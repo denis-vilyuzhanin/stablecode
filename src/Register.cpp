@@ -28,4 +28,14 @@ void Register::registerTestSuite(TestSuite* newTestSuite) {
 	suites.push_back(newTestSuite);
 }
 
+void Register::registerTest(Test* newTest) {
+	tests.push_back(newTest);
+}
+
+const std::list<Test*>& Register::getAllTests() const {
+	return tests;
+}
+
+
 } /* namespace stablecode */
+
