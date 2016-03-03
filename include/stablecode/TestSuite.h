@@ -8,9 +8,11 @@
 #ifndef INCLUDE_STABLECODE_TESTSUITE_H_
 #define INCLUDE_STABLECODE_TESTSUITE_H_
 
+#include "Registerable.h"
+
 namespace stablecode {
 
-class TestSuite {
+class TestSuite: public Registerable {
 public:
 	TestSuite();
 	virtual ~TestSuite();

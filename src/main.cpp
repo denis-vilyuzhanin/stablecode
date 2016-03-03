@@ -13,10 +13,7 @@
  using namespace stablecode;
 
  int main() {
-	 for(TestSuite* suite : Register::getInstance()->getAllSuites()) {
-		 cout<<typeid(*suite).name()<<endl;
-	 }
-	 for(Test* test : Register::getInstance()->getAllTests()) {
+	 for(Registerable* test : Register::getInstance()->getAllRegisteredObjects()) {
 		 cout<<typeid(*test).name()<<endl;
 	 }
 	 return 0;

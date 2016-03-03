@@ -11,8 +11,7 @@
 
 namespace stablecode {
 
-Test::Test() {
-	Register::getInstance()->registerTest(this);
+Test::Test(): Registerable(Registerable::TEST){
 }
 
 Test::~Test() {

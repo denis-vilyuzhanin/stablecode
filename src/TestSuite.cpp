@@ -12,8 +12,7 @@ namespace stablecode {
 
 static std::vector<TestSuite*> suites;
 
-TestSuite::TestSuite() {
-	Register::getInstance()->registerTestSuite(this);
+TestSuite::TestSuite():Registerable(Registerable::SUITE) {
 }
 
 TestSuite::~TestSuite() {

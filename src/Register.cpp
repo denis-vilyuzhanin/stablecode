@@ -11,31 +11,21 @@ namespace stablecode {
 
 Register Register::INSTANCE;
 
-Register::Register() {
-	// TODO Auto-generated constructor stub
 
+Register::Register() {
 }
 
 Register* Register::getInstance() {
 	return &INSTANCE;
 }
 
-const std::list<TestSuite*>& Register::getAllSuites() const {
-	return suites;
+void Register::registerObject(Registerable* newObject) {
+	registeredObjects.push_back(newObject);
 }
 
-void Register::registerTestSuite(TestSuite* newTestSuite) {
-	suites.push_back(newTestSuite);
+const std::list<Registerable*>& Register::getAllRegisteredObjects() const {
+	return registeredObjects;
 }
-
-void Register::registerTest(Test* newTest) {
-	tests.push_back(newTest);
-}
-
-const std::list<Test*>& Register::getAllTests() const {
-	return tests;
-}
-
 
 } /* namespace stablecode */
 
