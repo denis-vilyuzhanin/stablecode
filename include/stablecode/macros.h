@@ -49,5 +49,9 @@ void __$startup_type$__LINE__::run()
 #define _STABLECODE_TEST_CLASS_(name)  _STABLECODE_ID_(test, name)
 #define _STABLECODE_ID_(type, name) __$stablecode$##type##$##name##$__
 
+#define MERGE_(a,b)  a##b
+#define LABEL_(prefix, id) MERGE_(prefix, id)
+#define UNIQUE_ID(prefix) LABEL_(prefix, __LINE__ )
+
 
 #endif /* INCLUDE_STABLECODE_MACROS_H_ */
