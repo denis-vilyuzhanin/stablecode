@@ -16,5 +16,7 @@
 	 for(Registerable* test : Register::getInstance()->getAllRegisteredObjects()) {
 		 cout<<typeid(*test).name()<<endl;
 	 }
+	 Runner runnner;
+	 runnner.runAll();
 	 return 0;
  }
