@@ -1,13 +1,18 @@
 
-#include "stablecode.h"
+
 
 #include <iostream>
 using namespace std;
 
+#include "stablecode.h"
+
+TEST(firstTest) {
+	expect().fail("because");
+	EXPECT.fail("because");
+}
 TEST(firstTest) {
 
 }
-
 
 TEST(secondTest) {
 
@@ -31,6 +36,11 @@ SUITE(mySuite) {
 	}
 }
 
+SUITE(mySuite) {
+	TEST(firstTest) {
+
+	}
+}
 
 STARTUP {
 	cout<<"Startup"<<endl;

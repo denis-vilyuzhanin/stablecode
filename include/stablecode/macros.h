@@ -26,7 +26,7 @@ namespace _STABLECODE_SUITE_NS_(suiteName)
 class _STABLECODE_TEST_CLASS_(testName): public stablecode::Test { \
 public: \
 	void run(); \
-} __$##testName##$__; \
+} _STABLECODE_UNIQUE_ID_(testObject, testName); \
 void _STABLECODE_TEST_CLASS_(testName)::run()
 
 
@@ -42,12 +42,19 @@ public: \
 void __$startup_type$__LINE__::run()
 
 //======================================================================
+// Assertion
+
+#define EXPECT expect(__LINE__)
+
+//======================================================================
 //ID macroses
 
-#define _STABLECODE_SUITE_CLASS_(name) _STABLECODE_ID_(suite, name)
-#define _STABLECODE_SUITE_NS_(name) _STABLECODE_ID_(suiteNS, name)
-#define _STABLECODE_TEST_CLASS_(name)  _STABLECODE_ID_(test, name)
-#define _STABLECODE_ID_(type, name) __$stablecode$##type##$##name##$__
+#define _STABLECODE_SUITE_CLASS_(name) _STABLECODE_UNIQUE_ID_(suite, name)
+#define _STABLECODE_SUITE_NS_(name) _STABLECODE_UNIQUE_ID_(suiteNS, name)
+#define _STABLECODE_TEST_CLASS_(name)  _STABLECODE_UNIQUE_ID_(test, name)
+#define _STABLECODE_UNIQUE_ID_(type, name) _STABLECODE_ID_(type, name, __LINE__)
+#define _STABLECODE_ID_(type, name, id) _STABLECODE_ID_CONCAT_(stablecode, type, name, id)
+#define _STABLECODE_ID_CONCAT_(prefix, type, name, id) __$##prefix##$##type##$##name##$##id##$__
 
 #define MERGE_(a,b)  a##b
 #define LABEL_(prefix, id) MERGE_(prefix, id)

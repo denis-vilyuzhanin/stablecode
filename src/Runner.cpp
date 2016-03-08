@@ -9,6 +9,8 @@
 
 #include "stablecode/Registerable.h"
 #include "stablecode/Test.h"
+#include "Register.h"
+
 namespace stablecode {
 
 Runner::Runner() {

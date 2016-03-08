@@ -1,6 +1,7 @@
 
-#include "stablecode.h"
+
 #include "Register.h"
+#include "Runner.h"
 #include <iostream>
  #include <list>
  #include <algorithm>
@@ -13,8 +14,12 @@
  using namespace stablecode;
 
  int main() {
-	 for(Registerable* test : Register::getInstance()->getAllRegisteredObjects()) {
-		 cout<<typeid(*test).name()<<endl;
+	 for(Registerable* object : Register::getInstance()->getAllRegisteredObjects()) {
+		 cout<<typeid(*object).name()<<endl;
+		 Test* test = dynamic_cast<Test*>(object);
+		 if (test != nullptr) {
+			 test->run();
+		 }
 	 }
 	 Runner runnner;
 	 runnner.runAll();
