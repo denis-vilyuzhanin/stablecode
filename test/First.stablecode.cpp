@@ -17,15 +17,15 @@ TEST(firstTest) {
 	stablecode::TValue<const int> bb1(b);
 	stablecode::TValue<const int> bb2(b);
 	if (!isEqual(a1, bb1)) {
-		EXPECT().fail("because");
+		EXPECT1().fail("because");
 	}
 
 	if (isEqual(a3, bb1)) {
-		EXPECT().fail("isEqual");
+		EXPECT1().fail("isEqual");
 	}
 
 	if (!isGreater(a3, bb1)) {
-		EXPECT().fail("isGreater");
+		EXPECT1().fail("isGreater");
 	}
 
 	int* array1 = new int[100];
@@ -33,11 +33,11 @@ TEST(firstTest) {
 	stablecode::TValue<int*> array1_1(array1);
 	stablecode::TValue<int*> array1_2(array1);
 	if (!isEqual(array1_1, array1_2)) {
-		EXPECT().fail("array1 isEqual");
+		EXPECT1().fail("array1 isEqual");
 	}
 
 	if (isGreater(array1_1, array1_2)) {
-		EXPECT().fail("array1 isGreater");
+		EXPECT1().fail("array1 isGreater");
 	}
 }
 TEST(firstTest) {
@@ -45,7 +45,17 @@ TEST(firstTest) {
 }
 
 TEST(secondTest) {
-
+	int a = 10;
+	bool b = true;
+	EXPECT().fail("because");
+	EXPECT().that().value(a).is(10);
+	EXPECT().that().value(a).is(a);
+	EXPECT().that().value(10).is(a);
+	EXPECT().that().value(10 + 20).is(a);
+	EXPECT().that().value(b).isTrue();
+	EXPECT().that().value(b).isFalse();
+	EXPECT().that().value(a).greater(5);
+	EXPECT().that().value(a).equal(b);
 }
 
 SUITE(mySuite) {

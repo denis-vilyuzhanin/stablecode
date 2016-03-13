@@ -10,17 +10,18 @@
 
 #include "Registerable.h"
 #include "Value.h"
-
+#include "statement.h"
 #include <string>
 
 namespace stablecode {
+using namespace statement;
 
 class Test: public Registerable {
 public:
-	class Expectation {
+	class Expectation1 {
 	public:
-		Expectation(): lineNumber(-1){}
-		explicit Expectation(int lineNumber): lineNumber(lineNumber){}
+		Expectation1(): lineNumber(-1){}
+		explicit Expectation1(int lineNumber): lineNumber(lineNumber){}
 	public:
 		void fail();
 		void fail(std::string reason);
@@ -32,8 +33,10 @@ public:
 	virtual ~Test();
 	virtual void run();
 protected:
-	Expectation expect();
-	Expectation expect(int lineNumber);
+	Expectation1 expect1();
+	Expectation1 expect1(int lineNumber);
+	ExpectationStatement& expect();
+
 	void ok();
 	void fail();
 	void fail(std::string reason);

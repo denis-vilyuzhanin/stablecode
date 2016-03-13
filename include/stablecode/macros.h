@@ -44,7 +44,8 @@ void __$startup_type$__LINE__::run()
 //======================================================================
 // Assertion
 
-#define EXPECT() expect(__LINE__)
+#define EXPECT1() expect1(__LINE__)
+#define EXPECT() expect()
 
 //======================================================================
 //ID macroses

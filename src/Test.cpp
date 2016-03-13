@@ -8,7 +8,7 @@
 #include "stablecode/Test.h"
 
 #include "Register.h"
-
+#include "Expectation.h"
 #include <iostream>
 
 namespace stablecode {
@@ -27,12 +27,12 @@ void Test::fail(std::string reason) {
 	std::cout<<"Fail: "<<reason<<std::endl;
 }
 
-Test::Expectation Test::expect() {
-	return Test::Expectation();
+Test::Expectation1 Test::expect1() {
+	return Test::Expectation1();
 }
 
-Test::Expectation Test::expect(int lineNumber) {
-	return Test::Expectation(lineNumber);
+Test::Expectation1 Test::expect1(int lineNumber) {
+	return Test::Expectation1(lineNumber);
 }
 
 void Test::ok() {
@@ -45,10 +45,10 @@ void Test::fail(std::string reason, int lineNumber) {
 	std::cout<<"Fail: "<<reason<<"(file.cpp:"<<lineNumber<<")"<<std::endl;
 }
 
-void Test::Expectation::fail() {
+void Test::Expectation1::fail() {
 }
 
-void Test::Expectation::fail(std::string reason) {
+void Test::Expectation1::fail(std::string reason) {
 	if (lineNumber < 0) {
 		std::cout<<"Fail: "<<reason<<std::endl;
 	} else {
@@ -59,6 +59,11 @@ void Test::Expectation::fail(std::string reason) {
 
 bool Test::isEqual(Value& first, Value& second) {
 	return first.isEqual(second);
+}
+
+ExpectationStatement& Test::expect() {
+	Expectation* expectation = new Expectation();
+	return *expectation;
 }
 
 bool Test::isGreater(Value& first, Value& second) {
