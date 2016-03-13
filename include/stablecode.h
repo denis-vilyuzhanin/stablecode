@@ -10,6 +10,8 @@
 
 #include "stablecode/Registerable.h"
 #include "stablecode/Source.h"
+#include "stablecode/Value.h"
+#include "stablecode/TValue.h"
 #include "stablecode/Test.h"
 #include "stablecode/TestSuite.h"
 #include "stablecode/macros.h"

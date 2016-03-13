@@ -57,6 +57,13 @@ void Test::Expectation::fail(std::string reason) {
 
 }
 
+bool Test::isEqual(Value& first, Value& second) {
+	return first.isEqual(second);
+}
+
+bool Test::isGreater(Value& first, Value& second) {
+	return first.isGreater(second);
+}
 
 } /* namespace stablecode */
 

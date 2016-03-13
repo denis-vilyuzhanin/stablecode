@@ -9,6 +9,7 @@
 #define INCLUDE_STABLECODE_TEST_H_
 
 #include "Registerable.h"
+#include "Value.h"
 
 #include <string>
 
@@ -37,6 +38,9 @@ protected:
 	void fail();
 	void fail(std::string reason);
 	void fail(std::string reason, int lineNumber);
+
+	bool isEqual(Value& first, Value& second);
+	bool isGreater(Value& first, Value& second);
 };
 
 } /* namespace stablecode */

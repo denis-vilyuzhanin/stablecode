@@ -27,6 +27,7 @@ void Runner::discovery() {
 		Test* test = dynamic_cast<Test*>(registeredObject);
 		if(test != 0) {
 			tests.push_back(test);
+			test->run();
 		}
 	}
 }
