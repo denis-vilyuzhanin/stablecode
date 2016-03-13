@@ -27,7 +27,7 @@ private:
 	Register();
 	void registerObject(Registerable* newTest);
 private:
-	static Register INSTANCE;
+	static Register* INSTANCE;
 
 	std::list<Registerable*> registeredObjects;
 };

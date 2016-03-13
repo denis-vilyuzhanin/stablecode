@@ -24,5 +24,6 @@
 	 Runner runnner;
 	 runnner.discovery();
 	 runnner.runAll();
+
 	 return 0;
  }

@@ -7,7 +7,7 @@
 
 #ifndef INCLUDE_STABLECODE_H_
 #define INCLUDE_STABLECODE_H_
-
+#include "stablecode/configuration.h"
 #include "stablecode/Registerable.h"
 #include "stablecode/Source.h"
 #include "stablecode/Value.h"

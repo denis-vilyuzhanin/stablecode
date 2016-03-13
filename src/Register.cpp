@@ -9,14 +9,17 @@
 
 namespace stablecode {
 
-Register Register::INSTANCE;
+Register* Register::INSTANCE = 0;
 
 
 Register::Register() {
 }
 
 Register* Register::getInstance() {
-	return &INSTANCE;
+	if (INSTANCE == 0) {
+		INSTANCE = new Register();
+	}
+	return INSTANCE;
 }
 
 void Register::registerObject(Registerable* newObject) {

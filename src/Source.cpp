@@ -18,7 +18,7 @@ Source::Source(const Source& other):
 	fileName(other.fileName), lineNumber(other.lineNumber){
 }
 
-Source::Source(const Source&& other) noexcept:
+Source::Source(const Source&& other) NOEXCEPT:
 	fileName(std::move(other.fileName)), lineNumber(other.lineNumber){
 }
 

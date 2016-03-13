@@ -8,6 +8,8 @@
 #ifndef INCLUDE_STABLECODE_SOURCE_H_
 #define INCLUDE_STABLECODE_SOURCE_H_
 
+#include "configuration.h"
+
 #include<string>
 
 namespace stablecode {
@@ -16,7 +18,7 @@ class Source {
 public:
 	Source(const std::string& fileName, int lineNumber);
 	Source(const Source& other);
-	Source(const Source&& other) noexcept;
+	Source(const Source&& other) NOEXCEPT;
 public:
 	const std::string& getFileName() const {return fileName;}
 	int getLineNumber() const {return lineNumber;}
