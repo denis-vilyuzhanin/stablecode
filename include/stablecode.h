@@ -9,6 +9,7 @@
 #define INCLUDE_STABLECODE_H_
 
 #include "stablecode/Registerable.h"
+#include "stablecode/Source.h"
 #include "stablecode/Test.h"
 #include "stablecode/TestSuite.h"
 #include "stablecode/macros.h"
