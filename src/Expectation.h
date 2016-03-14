@@ -14,7 +14,7 @@ namespace stablecode {
 using namespace statement;
 
 class Expectation: public ExpectationStatement,
-				   private ThatStatement,
+				   public ThatStatement,
 				   private ValueStatement,
 				   private BooleanValueStatement{
 public:

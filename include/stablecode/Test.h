@@ -11,6 +11,7 @@
 #include "Registerable.h"
 #include "Value.h"
 #include "statement.h"
+#include "Source.h"
 #include <string>
 #include <functional>
 namespace stablecode {
@@ -20,32 +21,16 @@ class Test: public Registerable {
 public:
 
 
-	class Expectation1 {
-	public:
-		Expectation1(): lineNumber(-1){}
-		explicit Expectation1(int lineNumber): lineNumber(lineNumber){}
-	public:
-		void fail();
-		void fail(std::string reason);
-	private:
-		int lineNumber;
-	};
+
 public:
 	Test();
 	virtual ~Test();
 	virtual void run();
 protected:
-	Expectation1 expect1();
-	Expectation1 expect1(int lineNumber);
-	ExpectationStatement& expect();
 
-	void ok();
-	void fail();
-	void fail(std::string reason);
-	void fail(std::string reason, int lineNumber);
+	ThatStatement& expect(std::string reason);
+	ThatStatement& expect();
 
-	bool isEqual(Value& first, Value& second);
-	bool isGreater(Value& first, Value& second);
 };
 
 } /* namespace stablecode */
