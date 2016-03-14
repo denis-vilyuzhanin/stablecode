@@ -16,23 +16,30 @@
 namespace stablecode {
 namespace statement {
 
+typedef void* Void;
+
 struct ThatStatement;
 struct ValueStatement;
+struct BooleanValueStatement;
 
-struct ExpectationStatement {
-	virtual ThatStatement& that() = 0;
-	virtual void fail(std::string reason) = 0;
-
-	//Async statement.
-	//virtual LaterStatement later() = 0;
+struct LastStatement {
+	virtual ~LastStatement() {}
 };
 
 struct ThatStatement {
+
+	BooleanValueStatement& value(const bool variable) {
+		TValue<bool> variableValue(variable);
+		return booleanValueStatement(variableValue);
+	}
+
 	template<class T>
 	ValueStatement& value(const T variable) {
 		TValue<T> variableValue(variable);
 		return valueStatement(variableValue);
 	}
+
+	virtual LastStatement& fail(std::string reason) = 0;
 
 	//string
 	// StringStatment string(std::string str)
@@ -48,17 +55,22 @@ struct ThatStatement {
 
 protected:
 	virtual ValueStatement& valueStatement(const Value&) = 0;
+	virtual BooleanValueStatement& booleanValueStatement(const Value&) = 0;
 };
 
-struct ValueStatement {
+struct BooleanValueStatement: public LastStatement{
+	virtual LastStatement& isTrue() = 0;
+ 	virtual LastStatement& isFalse() = 0;
+};
 
-	virtual void isTrue() = 0;
- 	virtual void isFalse() = 0;
+struct ValueStatement: public LastStatement {
+
 
  	template<class T>
- 	void equal(const T& constValue) {
+ 	LastStatement& equal(const T& constValue) {
  		TValue<const T> value(constValue);
  		equalValue(value);
+ 		return *this;
  	}
 
  	// To support EXPECT().that(var1).equal(20).or().equal(30)
@@ -67,22 +79,36 @@ struct ValueStatement {
  	//  LogicalStatement equal(const T& constValue) {
 
  	template<class T>
- 	void greater(const T& constValue) {
+ 	LastStatement& greater(const T& constValue) {
  		TValue<const T> value(constValue);
  		greaterValue(value);
+ 		return *this;
  	}
 
 	template<class T>
-	void is(const T constValue) {
+	LastStatement& is(const T constValue) {
 		TValue<const T> value(constValue);
-
+		return *this;
 	}
 protected:
-	virtual void isValue(const Value&) = 0;
-	virtual void equalValue(const Value&) = 0;
-	virtual void greaterValue(const Value&) = 0;
+	virtual Void isValue(const Value&) = 0;
+	virtual Void equalValue(const Value&) = 0;
+	virtual Void greaterValue(const Value&) = 0;
 
 };
+
+struct ExpectationStatement {
+	virtual ThatStatement& that() = 0;
+
+	template<class T>
+	ValueStatement& value(const T& variable) {
+		return that().value(variable);
+	}
+
+	//Async statement.
+	//virtual LaterStatement later() = 0;
+};
+
 
 } /* namespace statement */
 } /* namespace stablecode */

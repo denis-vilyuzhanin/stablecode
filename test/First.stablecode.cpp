@@ -47,7 +47,6 @@ TEST(firstTest) {
 TEST(secondTest) {
 	int a = 10;
 	bool b = true;
-	EXPECT().fail("because");
 	EXPECT().that().value(a).is(10);
 	EXPECT().that().value(a).is(a);
 	EXPECT().that().value(10).is(a);
@@ -56,7 +55,15 @@ TEST(secondTest) {
 	EXPECT().that().value(b).isFalse();
 	EXPECT().that().value(a).greater(5);
 	EXPECT().that().value(a).equal(b);
+	EXPECT().value(a).equal(b);
+	ASSERT(that.value(a).equal(b));
+	ASSERT(that.value(b).isTrue());
+
+	ASSERT(that.value(b));
+
+
 }
+
 
 SUITE(mySuite) {
 

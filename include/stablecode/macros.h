@@ -46,6 +46,7 @@ void __$startup_type$__LINE__::run()
 
 #define EXPECT1() expect1(__LINE__)
 #define EXPECT() expect()
+#define ASSERT(expression) stablecode::Assert _STABLECODE_UNIQUE_ID_(assertion, var)([&](stablecode::Assert::That that) -> stablecode::statement::LastStatement& {return expression;})
 
 //======================================================================
 //ID macroses

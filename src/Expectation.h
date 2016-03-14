@@ -15,20 +15,23 @@ using namespace statement;
 
 class Expectation: public ExpectationStatement,
 				   private ThatStatement,
-				   private ValueStatement {
+				   private ValueStatement,
+				   private BooleanValueStatement{
 public:
 	Expectation();
 	virtual ~Expectation();
 
 	ThatStatement& that();
-	void fail(std::string reason);
+	LastStatement& fail(std::string reason);
 
 	ValueStatement& valueStatement(const Value&);
-	void isTrue();
- 	void isFalse();
-	void isValue(const Value&);
-	void equalValue(const Value&);
-	void greaterValue(const Value&);
+	BooleanValueStatement& booleanValueStatement(const Value&);
+
+	LastStatement& isTrue();
+	LastStatement& isFalse();
+	Void isValue(const Value&);
+	Void equalValue(const Value&);
+	Void greaterValue(const Value&);
 
 };
 

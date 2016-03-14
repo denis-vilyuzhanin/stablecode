@@ -13,6 +13,7 @@
 #include "stablecode/Value.h"
 #include "stablecode/TValue.h"
 #include "stablecode/statement.h"
+#include "stablecode/Assert.h"
 #include "stablecode/Test.h"
 #include "stablecode/TestSuite.h"
 #include "stablecode/macros.h"

@@ -12,12 +12,14 @@
 #include "Value.h"
 #include "statement.h"
 #include <string>
-
+#include <functional>
 namespace stablecode {
 using namespace statement;
 
 class Test: public Registerable {
 public:
+
+
 	class Expectation1 {
 	public:
 		Expectation1(): lineNumber(-1){}

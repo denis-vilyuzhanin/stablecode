@@ -26,22 +26,34 @@ ValueStatement& Expectation::valueStatement(const Value&) {
 	return *this;
 }
 
-void Expectation::isTrue() {
+BooleanValueStatement& Expectation::booleanValueStatement(const Value&) {
+	return *this;
 }
 
-void Expectation::isFalse() {
+
+LastStatement& Expectation::isTrue() {
+	return *(BooleanValueStatement*)this;
 }
 
-void Expectation::isValue(const Value&) {
+LastStatement& Expectation::isFalse() {
+	return *(BooleanValueStatement*)this;
 }
 
-void Expectation::equalValue(const Value&) {
+Void Expectation::isValue(const Value&) {
+	return nullptr;
 }
 
-void Expectation::fail(std::string reason) {
+Void Expectation::equalValue(const Value&) {
+	return nullptr;
 }
 
-void Expectation::greaterValue(const Value&) {
+LastStatement& Expectation::fail(std::string reason) {
+	return *(BooleanValueStatement*)this;
+}
+
+
+Void Expectation::greaterValue(const Value&) {
+	return nullptr;
 }
 
 } /* namespace stablecode */
