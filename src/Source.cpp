@@ -22,5 +22,9 @@ Source::Source(const Source&& other) NOEXCEPT:
 	fileName(std::move(other.fileName)), lineNumber(other.lineNumber){
 }
 
-} /* namespace stablecode */
+Source::Source():lineNumber(-1) {
+}
+
+}
+/* namespace stablecode */
 

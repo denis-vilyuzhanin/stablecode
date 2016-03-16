@@ -22,10 +22,6 @@ struct ThatStatement;
 struct ValueStatement;
 struct BooleanValueStatement;
 
-struct LastStatement {
-	virtual ~LastStatement() {}
-};
-
 struct ThatStatement {
 
 	BooleanValueStatement& value(const bool variable) {
@@ -39,7 +35,7 @@ struct ThatStatement {
 		return valueStatement(variableValue);
 	}
 
-	virtual LastStatement& fail(std::string reason) = 0;
+	virtual void fail(std::string reason) = 0;
 
 	//string
 	// StringStatment string(std::string str)
@@ -58,19 +54,18 @@ protected:
 	virtual BooleanValueStatement& booleanValueStatement(const Value&) = 0;
 };
 
-struct BooleanValueStatement: public LastStatement{
-	virtual LastStatement& isTrue() = 0;
- 	virtual LastStatement& isFalse() = 0;
+struct BooleanValueStatement {
+	virtual void isTrue() = 0;
+ 	virtual void isFalse() = 0;
 };
 
-struct ValueStatement: public LastStatement {
+struct ValueStatement {
 
 
  	template<class T>
- 	LastStatement& equal(const T& constValue) {
+ 	void equal(const T& constValue) {
  		TValue<const T> value(constValue);
  		equalValue(value);
- 		return *this;
  	}
 
  	// To support EXPECT().that(var1).equal(20).or().equal(30)
@@ -79,34 +74,20 @@ struct ValueStatement: public LastStatement {
  	//  LogicalStatement equal(const T& constValue) {
 
  	template<class T>
- 	LastStatement& greater(const T& constValue) {
+ 	void greater(const T& constValue) {
  		TValue<const T> value(constValue);
  		greaterValue(value);
- 		return *this;
  	}
 
 	template<class T>
-	LastStatement& is(const T constValue) {
+	void is(const T constValue) {
 		TValue<const T> value(constValue);
-		return *this;
 	}
 protected:
-	virtual Void isValue(const Value&) = 0;
-	virtual Void equalValue(const Value&) = 0;
-	virtual Void greaterValue(const Value&) = 0;
+	virtual void isValue(const Value&) = 0;
+	virtual void equalValue(const Value&) = 0;
+	virtual void greaterValue(const Value&) = 0;
 
-};
-
-struct ExpectationStatement {
-	virtual ThatStatement& that() = 0;
-
-	template<class T>
-	ValueStatement& value(const T& variable) {
-		return that().value(variable);
-	}
-
-	//Async statement.
-	//virtual LaterStatement later() = 0;
 };
 
 

@@ -16,6 +16,7 @@ namespace stablecode {
 
 class Source {
 public:
+	Source();
 	Source(const std::string& fileName, int lineNumber);
 	Source(const Source& other);
 	Source(const Source&& other) NOEXCEPT;

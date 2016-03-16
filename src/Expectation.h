@@ -8,31 +8,37 @@
 #ifndef SRC_EXPECTATION_H_
 #define SRC_EXPECTATION_H_
 
+#include <string>
+
 #include "stablecode/statement.h"
+#include "stablecode/Source.h"
 
 namespace stablecode {
 using namespace statement;
 
-class Expectation: public ExpectationStatement,
-				   public ThatStatement,
+class Expectation: public ThatStatement,
 				   private ValueStatement,
 				   private BooleanValueStatement{
 public:
-	Expectation();
+	Expectation(std::string reason);
+	Expectation(std::string reason, Source source);
 	virtual ~Expectation();
 
 	ThatStatement& that();
-	LastStatement& fail(std::string reason);
+	void fail(std::string reason);
 
 	ValueStatement& valueStatement(const Value&);
 	BooleanValueStatement& booleanValueStatement(const Value&);
 
-	LastStatement& isTrue();
-	LastStatement& isFalse();
-	Void isValue(const Value&);
-	Void equalValue(const Value&);
-	Void greaterValue(const Value&);
+	void isTrue();
+	void isFalse();
+	void isValue(const Value&);
+	void equalValue(const Value&);
+	void greaterValue(const Value&);
 
+private:
+	std::string reason;
+	Source source;
 };
 
 } /* namespace stablecode */

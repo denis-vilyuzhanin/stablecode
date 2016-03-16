@@ -29,7 +29,7 @@ public:
 protected:
 
 	ThatStatement& expect(std::string reason);
-	ThatStatement& expect();
+	ThatStatement& expect(std::string reason, Source source);
 
 };
 

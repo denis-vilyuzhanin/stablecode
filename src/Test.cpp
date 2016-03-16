@@ -24,11 +24,14 @@ void Test::run() {
 }
 
 ThatStatement& Test::expect(std::string reason) {
-	std::cout<<"Expectation: "<<reason<<std::endl;
-	Expectation* expectation = new Expectation();
+	Expectation* expectation = new Expectation(reason);
 	return *expectation;
 }
 
+ThatStatement& Test::expect(std::string reason, Source source) {
+	Expectation* expectation = new Expectation(reason, source);
+	return *expectation;
+}
 
 } /* namespace stablecode */
 

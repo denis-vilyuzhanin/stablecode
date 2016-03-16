@@ -9,9 +9,10 @@
 
 namespace stablecode {
 
-Expectation::Expectation() {
-	// TODO Auto-generated constructor stub
+Expectation::Expectation(std::string reason):reason(reason) {
+}
 
+Expectation::Expectation(std::string reason, Source source): reason(reason), source(source) {
 }
 
 Expectation::~Expectation() {
@@ -31,29 +32,30 @@ BooleanValueStatement& Expectation::booleanValueStatement(const Value&) {
 }
 
 
-LastStatement& Expectation::isTrue() {
-	return *(BooleanValueStatement*)this;
+void Expectation::isTrue() {
+
 }
 
-LastStatement& Expectation::isFalse() {
-	return *(BooleanValueStatement*)this;
+void Expectation::isFalse() {
+
 }
 
-Void Expectation::isValue(const Value&) {
-	return nullptr;
+void Expectation::isValue(const Value&) {
+
 }
 
-Void Expectation::equalValue(const Value&) {
-	return nullptr;
+void Expectation::equalValue(const Value&) {
+
 }
 
-LastStatement& Expectation::fail(std::string reason) {
-	return *(BooleanValueStatement*)this;
+void Expectation::fail(std::string reason) {
+
 }
 
 
-Void Expectation::greaterValue(const Value&) {
-	return nullptr;
+
+void Expectation::greaterValue(const Value&) {
+
 }
 
 } /* namespace stablecode */
