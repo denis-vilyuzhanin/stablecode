@@ -18,21 +18,22 @@ namespace statement {
 
 typedef void* Void;
 
-struct ThatStatement;
+struct ExpectationStatement;
 struct ValueStatement;
 struct BooleanValueStatement;
+struct StringValueStatement;
 
-struct ThatStatement {
+struct ExpectationStatement {
 
-	BooleanValueStatement& value(const bool variable) {
-		TValue<bool> variableValue(variable);
-		return booleanValueStatement(variableValue);
+	BooleanValueStatement& value(const bool first) {
+		TValue<bool> firstValue(first);
+		return booleanValueStatement(firstValue);
 	}
 
 	template<class T>
-	ValueStatement& value(const T variable) {
-		TValue<T> variableValue(variable);
-		return valueStatement(variableValue);
+	ValueStatement& value(const T first) {
+		TValue<T> firstValue(first);
+		return valueStatement(firstValue);
 	}
 
 	virtual void fail(std::string reason) = 0;
@@ -43,11 +44,6 @@ struct ThatStatement {
 	//array
 	//tamplate<class T>
 	// ArrayStatment string(T[] str, int count)
-
-	//bool
-	// BooleanStatement value(bool)
-
-
 
 protected:
 	virtual ValueStatement& valueStatement(const Value&) = 0;
@@ -63,9 +59,9 @@ struct ValueStatement {
 
 
  	template<class T>
- 	void equal(const T& constValue) {
- 		TValue<const T> value(constValue);
- 		equalValue(value);
+ 	void equal(const T& second) {
+ 		TValue<const T> secondValue(second);
+ 		equalValue(secondValue);
  	}
 
  	// To support EXPECT().that(var1).equal(20).or().equal(30)
@@ -74,15 +70,13 @@ struct ValueStatement {
  	//  LogicalStatement equal(const T& constValue) {
 
  	template<class T>
- 	void greater(const T& constValue) {
- 		TValue<const T> value(constValue);
- 		greaterValue(value);
+ 	void greater(const T& second) {
+ 		TValue<const T> secondValue(second);
+ 		greaterValue(secondValue);
  	}
 
-	template<class T>
-	void is(const T constValue) {
-		TValue<const T> value(constValue);
-	}
+ 	// EXPECT().value(a).is(int);
+
 protected:
 	virtual void isValue(const Value&) = 0;
 	virtual void equalValue(const Value&) = 0;

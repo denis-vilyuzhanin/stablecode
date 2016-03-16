@@ -19,10 +19,6 @@ Expectation::~Expectation() {
 	// TODO Auto-generated destructor stub
 }
 
-ThatStatement& Expectation::that() {
-	return *this;
-}
-
 ValueStatement& Expectation::valueStatement(const Value&) {
 	return *this;
 }
@@ -51,8 +47,6 @@ void Expectation::equalValue(const Value&) {
 void Expectation::fail(std::string reason) {
 
 }
-
-
 
 void Expectation::greaterValue(const Value&) {
 

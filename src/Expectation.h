@@ -16,7 +16,7 @@
 namespace stablecode {
 using namespace statement;
 
-class Expectation: public ThatStatement,
+class Expectation: public ExpectationStatement,
 				   private ValueStatement,
 				   private BooleanValueStatement{
 public:
@@ -24,7 +24,6 @@ public:
 	Expectation(std::string reason, Source source);
 	virtual ~Expectation();
 
-	ThatStatement& that();
 	void fail(std::string reason);
 
 	ValueStatement& valueStatement(const Value&);

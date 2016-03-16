@@ -23,12 +23,12 @@ Test::~Test() {
 void Test::run() {
 }
 
-ThatStatement& Test::expect(std::string reason) {
+ExpectationStatement& Test::expect(std::string reason) {
 	Expectation* expectation = new Expectation(reason);
 	return *expectation;
 }
 
-ThatStatement& Test::expect(std::string reason, Source source) {
+ExpectationStatement& Test::expect(std::string reason, Source source) {
 	Expectation* expectation = new Expectation(reason, source);
 	return *expectation;
 }

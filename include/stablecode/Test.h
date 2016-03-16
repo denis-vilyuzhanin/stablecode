@@ -28,8 +28,8 @@ public:
 	virtual void run();
 protected:
 
-	ThatStatement& expect(std::string reason);
-	ThatStatement& expect(std::string reason, Source source);
+	ExpectationStatement& expect(std::string reason);
+	ExpectationStatement& expect(std::string reason, Source source);
 
 };
 
