@@ -15,7 +15,8 @@
 #include "stablecode/statement.h"
 #include "stablecode/Test.h"
 #include "stablecode/TestSuite.h"
+#include "stablecode/GeneratedTest.h"
 #include "stablecode/macros.h"
-
+#include "stablecode/module.h"
 
 #endif /* INCLUDE_STABLECODE_H_ */

@@ -23,8 +23,9 @@ namespace _STABLECODE_SUITE_NS_(suiteName)
 // TEST macros
 #define TEST(testName) STABLECODE_TEST(testName)
 #define STABLECODE_TEST(testName) \
-class _STABLECODE_TEST_CLASS_(testName): public stablecode::Test { \
+class _STABLECODE_TEST_CLASS_(testName): public stablecode::GeneratedTest { \
 public: \
+	_STABLECODE_TEST_CLASS_(testName)():GeneratedTest(""#testName, &__STABLECODE_THIS_MODULE__){} \
 	void run(); \
 }; \
 stablecode::Registerable::Auto _STABLECODE_UNIQUE_ID_(testObject, testName) (new _STABLECODE_TEST_CLASS_(testName)()); \

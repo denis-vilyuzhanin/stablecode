@@ -5,13 +5,12 @@
  *      Author: Denys_Viliuzhanin
  */
 
-#include <stablecode/GeneratedTest.h>
+#include "stablecode/GeneratedTest.h"
 
 namespace stablecode {
 
-GeneratedTest::GeneratedTest() {
-
-
+GeneratedTest::GeneratedTest(const std::string& declaredTestName, Source* module):
+		Test(), declaredTestName(declaredTestName), module(module) {
 }
 
 GeneratedTest::~GeneratedTest() {
