@@ -18,19 +18,21 @@ namespace stablecode {
 using namespace statement;
 
 class Test: public Registerable {
-public:
-
-
 
 public:
-	Test();
+	Test(){}
+	Test(const std::string& name);
 	virtual ~Test();
+public:
 	virtual void run();
-protected:
 
+	const std::string& getName() const {return name;}
+
+protected:
 	ExpectationStatement& expect(std::string reason);
 	ExpectationStatement& expect(std::string reason, Source source);
-
+private:
+	std::string name;
 };
 
 } /* namespace stablecode */

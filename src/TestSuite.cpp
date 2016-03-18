@@ -12,7 +12,7 @@ namespace stablecode {
 
 static std::vector<TestSuite*> suites;
 
-TestSuite::TestSuite():Registerable(Registerable::SUITE) {
+TestSuite::TestSuite() {
 }
 
 TestSuite::~TestSuite() {
@@ -20,5 +20,12 @@ TestSuite::~TestSuite() {
 
 }
 
+void TestSuite::addTest(Test* newTest) {
+	tests.push_back(newTest);
+}
+
+void TestSuite::addSuite(TestSuite* suite) {
+	suites.push_back(suite);
+}
 
 } /* namespace stablecode */

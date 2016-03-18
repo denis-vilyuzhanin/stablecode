@@ -26,7 +26,8 @@ namespace _STABLECODE_SUITE_NS_(suiteName)
 class _STABLECODE_TEST_CLASS_(testName): public stablecode::Test { \
 public: \
 	void run(); \
-} _STABLECODE_UNIQUE_ID_(testObject, testName); \
+}; \
+stablecode::Registerable::Auto _STABLECODE_UNIQUE_ID_(testObject, testName) (new _STABLECODE_TEST_CLASS_(testName)()); \
 void _STABLECODE_TEST_CLASS_(testName)::run()
 
 

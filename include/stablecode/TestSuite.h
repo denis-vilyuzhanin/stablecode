@@ -8,7 +8,10 @@
 #ifndef INCLUDE_STABLECODE_TESTSUITE_H_
 #define INCLUDE_STABLECODE_TESTSUITE_H_
 
+#include <list>
+
 #include "Registerable.h"
+#include "Test.h"
 
 namespace stablecode {
 
@@ -16,6 +19,12 @@ class TestSuite: public Registerable {
 public:
 	TestSuite();
 	virtual ~TestSuite();
+public:
+	void addTest(Test*);
+	void addSuite(TestSuite*);
+private:
+	std::list<Test*> tests;
+	std::list<TestSuite*> suites;
 };
 
 } /* namespace stablecode */

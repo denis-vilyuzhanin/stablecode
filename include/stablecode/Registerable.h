@@ -8,24 +8,25 @@
 #ifndef INCLUDE_STABLECODE_REGISTERABLE_H_
 #define INCLUDE_STABLECODE_REGISTERABLE_H_
 
+#include <string>
+
 namespace stablecode {
 
 class Registerable {
 public:
-	enum Type {
-			SUITE,
-			TEST,
-			VERIFY,
-			INIT,
-			DESTROY
-		};
+
+	class Auto {
+	public:
+		Auto(Registerable* object);
+	};
+
 public:
-	Type getType();
+
+	const std::string getClassName() const;
+
 protected:
-	Registerable(Type type);
+	Registerable();
 	virtual ~Registerable();
-private:
-	Type type;
 };
 
 } /* namespace stablecode */

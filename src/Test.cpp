@@ -5,15 +5,18 @@
  *      Author: Denys_Viliuzhanin
  */
 
+
+#include <iostream>
+
+
 #include "stablecode/Test.h"
 
 #include "Register.h"
 #include "Expectation.h"
-#include <iostream>
 
 namespace stablecode {
 
-Test::Test(): Registerable(Registerable::TEST){
+Test::Test(const std::string& name):name(name) {
 }
 
 Test::~Test() {
@@ -32,6 +35,7 @@ ExpectationStatement& Test::expect(std::string reason, Source source) {
 	Expectation* expectation = new Expectation(reason, source);
 	return *expectation;
 }
+
 
 } /* namespace stablecode */
 
