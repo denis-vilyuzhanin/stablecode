@@ -8,8 +8,10 @@
 #include "Discovery.h"
 
 #include "stablecode/GeneratedTest.h"
+#include "GeneratedName.h"
 
 #include <iostream>
+#include <list>
 
 namespace stablecode {
 using namespace std;
@@ -27,6 +29,7 @@ void Discovery::discover(const list<Registerable*>& objects) {
 	for(Registerable* object: objects) {
 		GeneratedTest* test = dynamic_cast<GeneratedTest*>(object);
 		if (object != nullptr) {
+			GeneratedName testName(test->getClassName());
 			cout<<"Test: "<<test->getClassName()<<endl;
 		}
 	}
