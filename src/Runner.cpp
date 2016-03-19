@@ -28,7 +28,6 @@ void Runner::discovery() {
 	for(Registerable* registeredObject : Register::getInstance()->getAllRegisteredObjects()) {
 		Test* test = dynamic_cast<Test*>(registeredObject);
 		if(test != 0) {
-			std::cout<<test->getClassName()<<std::endl;
 			tests.push_back(test);
 			test->run();
 		}

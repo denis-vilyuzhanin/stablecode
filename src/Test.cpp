@@ -16,7 +16,7 @@
 
 namespace stablecode {
 
-Test::Test(const std::string& name):name(name) {
+Test::Test() {
 }
 
 Test::~Test() {

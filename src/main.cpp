@@ -1,13 +1,16 @@
 
 
-#include "Register.h"
-#include "Runner.h"
 #include <iostream>
- #include <list>
- #include <algorithm>
+#include <list>
+#include <algorithm>
 
 #include <atomic>
 #include <typeinfo>
+
+#include "Register.h"
+#include "Runner.h"
+#include "Discovery.h"
+
 
 
  using namespace std;
@@ -21,9 +24,12 @@
 			 test->run();
 		 }
 	 }*/
+	 Discovery discovery;
+	 discovery.discover(Register::getInstance()->getAllRegisteredObjects());
+
 	 Runner runnner;
-	 runnner.discovery();
-	 runnner.runAll();
+
+	 //runnner.runAll();
 
 	 return 0;
  }

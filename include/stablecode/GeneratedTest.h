@@ -9,6 +9,7 @@
 #define INCLUDE_STABLECODE_GENERATEDTEST_H_
 
 #include <string>
+using namespace std;
 
 #include "Test.h"
 #include "Source.h"
@@ -16,14 +17,16 @@
 namespace stablecode {
 
 class GeneratedTest: public Test {
+
 public:
-	GeneratedTest(const std::string& declaredTestName, Source* module);
+	GeneratedTest(const string& declaredTestName, Source* module);
 	virtual ~GeneratedTest();
 public:
 	Source* getModule() const {return module;}
-	const std::string& getDeclaredTestName() const {return declaredTestName;}
+	const string& getDeclaredTestName() const {return declaredTestName;}
+
 private:
-	std::string declaredTestName;
+	string declaredTestName;
 	Source* module;
 };
 
