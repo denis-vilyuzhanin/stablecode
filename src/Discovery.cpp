@@ -58,6 +58,12 @@ void Discovery::discover(const list<Registerable*>& objects) {
 			GeneratedName testName();
 
 		}*/
+
+		Test* test = dynamic_cast<Test*>(object);
+		if (test != nullptr) {
+			cout<<sourceModuleId<<"@"<<endl;
+			test->run();
+		}
 	}
 }
 

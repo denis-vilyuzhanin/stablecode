@@ -7,7 +7,7 @@ using namespace std;
 #include "stablecode.h"
 
 TEST(firstTest) {
-
+	cout<<"Test Run 1"<<endl;
 }
 TEST(firstTest) {
 
@@ -60,3 +60,4 @@ SUITE(mySuite) {
 STARTUP {
 	cout<<"Startup"<<endl;
 }
+
