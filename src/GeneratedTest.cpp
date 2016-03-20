@@ -11,8 +11,8 @@
 
 namespace stablecode {
 
-GeneratedTest::GeneratedTest(const string& declaredTestName, Source* module):
-		declaredTestName(declaredTestName), module(module) {
+GeneratedTest::GeneratedTest(const string& declaredTestName, Module* module):
+		Registerable(module), declaredTestName(declaredTestName) {
 
 }
 

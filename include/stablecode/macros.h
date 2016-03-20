@@ -12,24 +12,26 @@
 // SUITE macros
 #define SUITE(suiteName) STABLECODE_SUITE(suiteName)
 #define STABLECODE_SUITE(suiteName) \
-namespace _STABLECODE_SUITE_NS_(suiteName) { \
-	class _STABLECODE_SUITE_CLASS_(suiteName): public stablecode::TestSuite { \
-	} __$suite$__; \
+namespace _STABLECODE_SUITE_(suiteName) { \
+	static stablecode::Source __THIS_SUITE__(__FILE__, __LINE__);\
 } \
-namespace _STABLECODE_SUITE_NS_(suiteName)
+namespace _STABLECODE_SUITE_(suiteName)
 
 
 //======================================================================
 // TEST macros
 #define TEST(testName) STABLECODE_TEST(testName)
 #define STABLECODE_TEST(testName) \
+template<int N> \
 class _STABLECODE_TEST_CLASS_(testName): public stablecode::GeneratedTest { \
 public: \
 	_STABLECODE_TEST_CLASS_(testName)():GeneratedTest(""#testName, &__STABLECODE_THIS_MODULE__){} \
+private: \
 	void run(); \
 }; \
-stablecode::Registerable::Auto _STABLECODE_UNIQUE_ID_(testObject, testName) (new _STABLECODE_TEST_CLASS_(testName)()); \
-void _STABLECODE_TEST_CLASS_(testName)::run()
+static stablecode::Registerable::Auto _STABLECODE_UNIQUE_ID_(testObject, testName) (new _STABLECODE_TEST_CLASS_(testName)<0>()); \
+template<int N> \
+void _STABLECODE_TEST_CLASS_(testName)<N>::run()
 
 
 //======================================================================
@@ -52,8 +54,7 @@ void __$startup_type$__LINE__::run()
 //======================================================================
 //ID macroses
 
-#define _STABLECODE_SUITE_CLASS_(name) _STABLECODE_UNIQUE_ID_(suite, name)
-#define _STABLECODE_SUITE_NS_(name) _STABLECODE_UNIQUE_ID_(suiteNS, name)
+#define _STABLECODE_SUITE_(name) _STABLECODE_UNIQUE_ID_(suite, name)
 #define _STABLECODE_TEST_CLASS_(name)  _STABLECODE_UNIQUE_ID_(test, name)
 #define _STABLECODE_UNIQUE_ID_(type, name) _STABLECODE_ID_(type, name, __LINE__)
 #define _STABLECODE_ID_(type, name, id) _STABLECODE_ID_CONCAT_(stablecode, type, name, id)

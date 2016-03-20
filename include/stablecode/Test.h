@@ -8,7 +8,6 @@
 #ifndef INCLUDE_STABLECODE_TEST_H_
 #define INCLUDE_STABLECODE_TEST_H_
 
-#include "Registerable.h"
 #include "Value.h"
 #include "statement.h"
 #include "Source.h"
@@ -17,7 +16,7 @@
 namespace stablecode {
 using namespace statement;
 
-class Test: public Registerable {
+class Test{
 
 public:
 	Test();

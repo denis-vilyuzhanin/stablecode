@@ -9,11 +9,10 @@
 #define INCLUDE_STABLECODE_CONFIGURATION_H_
 
 #ifndef _MSC_VER
-#define NOEXCEPT noexcept
+	#define NOEXCEPT noexcept
 #else
-#define NOEXCEPT
+	#define NOEXCEPT
 #endif
-
 
 
 #endif /* INCLUDE_STABLECODE_CONFIGURATION_H_ */

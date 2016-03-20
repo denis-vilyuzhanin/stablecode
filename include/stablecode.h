@@ -7,6 +7,7 @@
 
 #ifndef INCLUDE_STABLECODE_H_
 #define INCLUDE_STABLECODE_H_
+
 #include "stablecode/configuration.h"
 #include "stablecode/Registerable.h"
 #include "stablecode/Source.h"
@@ -14,9 +15,8 @@
 #include "stablecode/TValue.h"
 #include "stablecode/statement.h"
 #include "stablecode/Test.h"
-#include "stablecode/TestSuite.h"
 #include "stablecode/GeneratedTest.h"
+#include "stablecode/Module.h"
 #include "stablecode/macros.h"
-#include "stablecode/module.h"
 
 #endif /* INCLUDE_STABLECODE_H_ */

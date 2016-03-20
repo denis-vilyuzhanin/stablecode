@@ -9,8 +9,12 @@
 #define SRC_DISCOVERY_H_
 
 #include <list>
+#include <map>
+#include <string>
 
 #include "stablecode/Registerable.h"
+#include "stablecode/Module.h"
+#include "TestSuite.h"
 
 namespace stablecode {
 
@@ -21,6 +25,20 @@ public:
 	virtual ~Discovery();
 public:
 	void discover(const std::list<Registerable*>&);
+private:
+	struct SuiteKey {
+		std::string suiteName;
+		Module::Id moduleId;
+
+		bool operator<(const SuiteKey& other) const {
+			if (suiteName == other.suiteName) {
+				return moduleId < other.moduleId;
+			}
+			return suiteName < other.suiteName;
+		}
+	};
+private:
+	std::map<SuiteKey, TestSuite*> suites;
 };
 
 } /* namespace tablecode */

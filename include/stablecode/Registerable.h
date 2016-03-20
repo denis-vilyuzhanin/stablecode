@@ -10,6 +10,8 @@
 
 #include <string>
 
+#include "Module.h"
+
 namespace stablecode {
 
 class Registerable {
@@ -21,12 +23,15 @@ public:
 	};
 
 public:
-
+	virtual ~Registerable();
 	const std::string getClassName() const;
+	Module* getModule() const {return module;}
 
 protected:
-	Registerable();
-	virtual ~Registerable();
+	Registerable(Module* module);
+
+private:
+	Module* module;
 };
 
 } /* namespace stablecode */

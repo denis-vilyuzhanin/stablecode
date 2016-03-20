@@ -5,13 +5,16 @@
  *      Author: dvily_000
  */
 
+#include <iostream>
+#include <list>
+
 #include "Discovery.h"
 
 #include "stablecode/GeneratedTest.h"
+#include "stablecode/Module.h"
 #include "GeneratedName.h"
+#include "GeneratedNameParser.h"
 
-#include <iostream>
-#include <list>
 
 namespace stablecode {
 using namespace std;
@@ -27,11 +30,34 @@ Discovery::~Discovery() {
 
 void Discovery::discover(const list<Registerable*>& objects) {
 	for(Registerable* object: objects) {
-		GeneratedTest* test = dynamic_cast<GeneratedTest*>(object);
+		const string& className = object->getClassName();
+		cout<<className<<endl;
+		Module::Id sourceModuleId = object->getModule()->getId();
+		GeneratedNameParser parser;
+		string name = "";
+		/*while(parser.parseNext(className)) {
+			if (parser.type() != "suite") {
+				break;
+			}
+			name.append(parser.name());
+			SuiteKey key;
+			key.moduleId = sourceModuleId;
+			key.suiteName = name;
+			TestSuite* suite;
+			auto suitesIter = suites.find(key);
+			if (suitesIter != suites.end()) {
+				suite = suitesIter->second;
+			} else {
+				suite = new TestSuite();
+				suites[key] = suite;
+			}
+		}*/
+		/*GeneratedTest* test = dynamic_cast<GeneratedTest*>(object);
 		if (object != nullptr) {
-			GeneratedName testName(test->getClassName());
-			cout<<"Test: "<<test->getClassName()<<endl;
-		}
+
+			GeneratedName testName();
+
+		}*/
 	}
 }
 

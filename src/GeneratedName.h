@@ -36,6 +36,8 @@ public:
 	virtual ~GeneratedName();
 public:
 
+
+
 	const std::list<Token>& getTokens() const {return tokens;}
 
 private:

@@ -10,12 +10,11 @@
 
 #include <list>
 
-#include "Registerable.h"
-#include "Test.h"
+#include "stablecode/Test.h"
 
 namespace stablecode {
 
-class TestSuite: public Registerable {
+class TestSuite {
 public:
 	TestSuite();
 	virtual ~TestSuite();

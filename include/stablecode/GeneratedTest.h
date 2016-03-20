@@ -12,22 +12,22 @@
 using namespace std;
 
 #include "Test.h"
-#include "Source.h"
+#include "Module.h"
+#include "Registerable.h"
 
 namespace stablecode {
 
-class GeneratedTest: public Test {
+class GeneratedTest: public Test, public Registerable {
 
 public:
-	GeneratedTest(const string& declaredTestName, Source* module);
+	GeneratedTest(const string& declaredTestName, Module* module);
 	virtual ~GeneratedTest();
 public:
-	Source* getModule() const {return module;}
 	const string& getDeclaredTestName() const {return declaredTestName;}
 
 private:
 	string declaredTestName;
-	Source* module;
+
 };
 
 } /* namespace stablecode */

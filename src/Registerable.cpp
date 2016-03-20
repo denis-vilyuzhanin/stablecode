@@ -12,7 +12,7 @@
 
 namespace stablecode {
 
-Registerable::Registerable() {
+Registerable::Registerable(Module* module): module(module) {
 }
 
 
