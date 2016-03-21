@@ -20,11 +20,12 @@ namespace stablecode {
 
 
 class Discovery {
+	friend Discoverable;
 public:
 	Discovery();
 	virtual ~Discovery();
 public:
-	void discover(const std::list<Discoverable*>&);
+	void discover();
 private:
 	struct SuiteKey {
 		std::string suiteName;
@@ -38,6 +39,10 @@ private:
 		}
 	};
 private:
+	static void toBeDiscovered(Discoverable* object);
+private:
+	static std::list<Discoverable*> toBeDiscoveredObjects;
+
 	std::map<SuiteKey, TestSuite*> suites;
 };
 

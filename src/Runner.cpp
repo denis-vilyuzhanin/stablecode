@@ -11,7 +11,6 @@
 
 #include <stablecode/Discoverable.h>
 #include "stablecode/Test.h"
-#include "Register.h"
 
 namespace stablecode {
 
@@ -25,13 +24,7 @@ Runner::~Runner() {
 }
 
 void Runner::discovery() {
-	for(Discoverable* registeredObject : Register::getInstance()->getAllRegisteredObjects()) {
-		Test* test = dynamic_cast<Test*>(registeredObject);
-		if(test != 0) {
-			tests.push_back(test);
-			test->run();
-		}
-	}
+
 }
 
 void Runner::runAll() {

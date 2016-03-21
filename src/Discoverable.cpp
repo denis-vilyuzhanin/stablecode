@@ -4,17 +4,16 @@
  *  Created on: Mar 3, 2016
  *      Author: Denys_Viliuzhanin
  */
-#include "stablecode/Discoverable.h"
-
 #include <typeinfo>
 
+#include "stablecode/Discoverable.h"
 
-#include "Register.h"
+#include "Discovery.h"
 
 namespace stablecode {
 
 Discoverable::Discoverable() {
-	Register::getInstance()->registerObject(this);
+	Discovery::toBeDiscovered(this);
 }
 
 

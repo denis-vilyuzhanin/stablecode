@@ -7,7 +7,6 @@
 
 #include "TestSuite.h"
 
-#include "Register.h"
 #include <vector>
 namespace stablecode {
 

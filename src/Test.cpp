@@ -11,7 +11,6 @@
 
 #include "stablecode/Test.h"
 
-#include "Register.h"
 #include "Expectation.h"
 
 namespace stablecode {

@@ -18,6 +18,8 @@
 namespace stablecode {
 using namespace std;
 
+list<Discoverable*> Discovery::toBeDiscoveredObjects;
+
 Discovery::Discovery() {
 	// TODO Auto-generated constructor stub
 
@@ -27,8 +29,8 @@ Discovery::~Discovery() {
 	// TODO Auto-generated destructor stub
 }
 
-void Discovery::discover(const list<Discoverable*>& objects) {
-	for(Discoverable* object: objects) {
+void Discovery::discover() {
+	for(Discoverable* object: toBeDiscoveredObjects) {
 		const string& className = object->getClassName();
 		cout<<className<<endl;
 		//Module::Id sourceModuleId = object->getModule()->getId();
@@ -64,6 +66,10 @@ void Discovery::discover(const list<Discoverable*>& objects) {
 			test->run();
 		}
 	}
+}
+
+void Discovery::toBeDiscovered(Discoverable* object) {
+	toBeDiscoveredObjects.push_back(object);
 }
 
 } /* namespace tablecode */

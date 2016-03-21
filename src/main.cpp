@@ -7,7 +7,6 @@
 #include <atomic>
 #include <typeinfo>
 
-#include "Register.h"
 #include "Runner.h"
 #include "Discovery.h"
 
@@ -25,7 +24,7 @@
 		 }
 	 }*/
 	 Discovery discovery;
-	 discovery.discover(Register::getInstance()->getAllRegisteredObjects());
+	 discovery.discover();
 
 	 Runner runnner;
 
