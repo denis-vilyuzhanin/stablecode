@@ -9,14 +9,13 @@
 
 #include <vector>
 namespace stablecode {
-
+using namespace std;
 static std::vector<TestSuite*> suites;
 
-TestSuite::TestSuite() {
+TestSuite::TestSuite(string name):name(name) {
 }
 
 TestSuite::~TestSuite() {
-	// TODO Auto-generated constructor stub
 
 }
 

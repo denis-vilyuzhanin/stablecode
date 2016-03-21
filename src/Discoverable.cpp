@@ -21,8 +21,6 @@ Discoverable::~Discoverable() {
 
 }
 
-
-
 const std::string Discoverable::getClassName() const {
 	return typeid(*this).name();
 }

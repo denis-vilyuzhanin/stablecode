@@ -8,11 +8,13 @@
 #ifndef SRC_DISCOVERY_H_
 #define SRC_DISCOVERY_H_
 
-#include <stablecode/Discoverable.h>
 #include <list>
 #include <map>
 #include <string>
 
+
+#include "stablecode/Discoverable.h"
+#include "stablecode/GeneratedClass.h"
 #include "stablecode/Module.h"
 #include "TestSuite.h"
 
@@ -27,23 +29,15 @@ public:
 public:
 	void discover();
 private:
-	struct SuiteKey {
-		std::string suiteName;
-		Module::Id moduleId;
-
-		bool operator<(const SuiteKey& other) const {
-			if (suiteName == other.suiteName) {
-				return moduleId < other.moduleId;
-			}
-			return suiteName < other.suiteName;
-		}
-	};
+	void discoverGeneratedClass(GeneratedClass*);
 private:
 	static void toBeDiscovered(Discoverable* object);
+	TestSuite* findOrCreateRootSuite(Module* module);
+
 private:
 	static std::list<Discoverable*> toBeDiscoveredObjects;
 
-	std::map<SuiteKey, TestSuite*> suites;
+	std::map<Module::Id, TestSuite*> suites;
 };
 
 } /* namespace tablecode */

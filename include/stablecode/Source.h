@@ -17,15 +17,15 @@ namespace stablecode {
 class Source {
 public:
 	Source();
-	Source(const std::string& fileName, int lineNumber);
+	Source(const std::string& file, int lineNumber);
 	Source(const Source& other);
 	Source(const Source&& other) NOEXCEPT;
 public:
-	const std::string& getFileName() const {return fileName;}
+	const std::string& getFile() const {return file;}
 	int getLineNumber() const {return lineNumber;}
 private:
 
-	std::string fileName;
+	std::string file;
 	int lineNumber;
 };
 

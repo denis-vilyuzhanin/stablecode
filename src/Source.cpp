@@ -10,16 +10,16 @@
 
 namespace stablecode {
 
-Source::Source(const std::string& fileName, int lineNumber):
-	fileName(fileName), lineNumber(lineNumber){
+Source::Source(const std::string& file, int lineNumber):
+	file(file), lineNumber(lineNumber){
 }
 
 Source::Source(const Source& other):
-	fileName(other.fileName), lineNumber(other.lineNumber){
+	file(other.file), lineNumber(other.lineNumber){
 }
 
 Source::Source(const Source&& other) NOEXCEPT:
-	fileName(std::move(other.fileName)), lineNumber(other.lineNumber){
+	file(std::move(other.file)), lineNumber(other.lineNumber){
 }
 
 Source::Source():lineNumber(-1) {

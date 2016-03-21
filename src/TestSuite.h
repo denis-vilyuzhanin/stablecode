@@ -9,19 +9,22 @@
 #define INCLUDE_STABLECODE_TESTSUITE_H_
 
 #include <list>
-
+#include <string>
 #include "stablecode/Test.h"
 
 namespace stablecode {
 
 class TestSuite {
 public:
-	TestSuite();
+	TestSuite(std::string name);
 	virtual ~TestSuite();
 public:
 	void addTest(Test*);
 	void addSuite(TestSuite*);
+
+	const std::string& getName() const {return name;}
 private:
+	std::string name;
 	std::list<Test*> tests;
 	std::list<TestSuite*> suites;
 };

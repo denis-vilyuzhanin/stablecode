@@ -31,8 +31,10 @@ Discovery::~Discovery() {
 
 void Discovery::discover() {
 	for(Discoverable* object: toBeDiscoveredObjects) {
-		const string& className = object->getClassName();
-		cout<<className<<endl;
+		GeneratedClass* generatedClass = dynamic_cast<GeneratedClass*>(object);
+		if (generatedClass != nullptr) {
+			discoverGeneratedClass(generatedClass);
+		}
 		//Module::Id sourceModuleId = object->getModule()->getId();
 		GeneratedNameParser parser;
 		string name = "";
@@ -66,6 +68,26 @@ void Discovery::discover() {
 			test->run();
 		}
 	}
+}
+
+void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
+	generatedClassObject->init();
+	Module* module = generatedClassObject->getModule();
+	TestSuite* rootSuite = findOrCreateRootSuite(module);
+	for(string name : generatedClassObject->getScope()) {
+
+	}
+
+}
+
+TestSuite* Discovery::findOrCreateRootSuite(Module* module) {
+	auto foundRootSuite = suites.find(module->getId());
+	if (foundRootSuite == suites.end()) {
+		TestSuite* newRootSuite = new TestSuite(module->getSource().getFile());
+		suites[module->getId()] = newRootSuite;
+		return newRootSuite;
+	}
+	return foundRootSuite->second;
 }
 
 void Discovery::toBeDiscovered(Discoverable* object) {

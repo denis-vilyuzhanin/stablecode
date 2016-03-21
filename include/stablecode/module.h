@@ -9,24 +9,28 @@
 #define INCLUDE_STABLECODE_MODULE_H_
 
 
-#include <iostream>
+
+#include "Source.h"
+
 namespace stablecode {
 
 class Module {
 public:
 	typedef unsigned long long int Id;
 public:
-	Module(){};
-	virtual ~Module(){}
+	Module(Source source);
 public:
 	Id getId() const;
+	const Source& getSource() const {return source;}
+private:
+	Source source;
 };
 
 
 
 } /* namespace stablecode */
 
-static stablecode::Module __STABLECODE_THIS_MODULE__;
+static stablecode::Module __STABLECODE_THIS_MODULE__(stablecode::Source(__FILE__, __LINE__));
 
 
 #endif /* INCLUDE_STABLECODE_MODULE_H_ */

@@ -10,6 +10,8 @@
 
 #include <stablecode/Discoverable.h>
 #include <string>
+#include <list>
+
 #include "Module.h"
 #include "Source.h"
 
@@ -18,12 +20,19 @@ namespace stablecode {
 class GeneratedClass: public Discoverable {
 public:
 	virtual ~GeneratedClass();
+public:
+	void init();
+	const Scope& getScope() const ;
+
+	Module* getModule() const {return module;}
 protected:
 	GeneratedClass(std::string declaredName, Module* module, Source source);
 protected:
 	std::string declaredName;
 	Module* module;
 	Source source;
+	std::string name;
+	Scope scope;
 };
 
 } /* namespace stablecode */

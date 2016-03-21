@@ -8,7 +8,9 @@
 #ifndef INCLUDE_STABLECODE_H_
 #define INCLUDE_STABLECODE_H_
 
-#include <stablecode/Discoverable.h>
+#include "stablecode/Scope.h"
+#include "stablecode/Module.h"
+#include "stablecode/Discoverable.h"
 #include "stablecode/configuration.h"
 #include "stablecode/Source.h"
 #include "stablecode/Value.h"
@@ -16,7 +18,6 @@
 #include "stablecode/statement.h"
 #include "stablecode/Test.h"
 #include "stablecode/GeneratedClass.h"
-#include "stablecode/Module.h"
 #include "stablecode/macros.h"
 
 #endif /* INCLUDE_STABLECODE_H_ */

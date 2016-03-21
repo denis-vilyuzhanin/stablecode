@@ -10,6 +10,8 @@
 
 namespace stablecode {
 
+Module::Module(Source source): source(source){}
+
 Module::Id Module::getId() const {
 	return reinterpret_cast<Module::Id>(this);
 }

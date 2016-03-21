@@ -6,6 +6,7 @@
  */
 
 #include "stablecode/GeneratedClass.h"
+#include "GeneratedNameParser.h"
 
 namespace stablecode {
 using namespace std;
@@ -19,4 +20,21 @@ GeneratedClass::~GeneratedClass() {
 
 }
 
+void GeneratedClass::init() {
+	const string& className = getClassName();
+	GeneratedNameParser parser;
+	while(parser.parseNext(className)) {
+		if (parser.type() != "suite") {
+			break;
+		}
+		scope.addLevel(parser.name());
+	}
+}
+
+const Scope& GeneratedClass::getScope() const{
+	return scope;
+}
+
+
 } /* namespace stablecode */
+
