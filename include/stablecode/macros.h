@@ -23,16 +23,18 @@ namespace _STABLECODE_SUITE_(suiteName)
 #define TEST(testName) STABLECODE_TEST(testName)
 #define STABLECODE_TEST(testName) \
 static void _STABLECODE_UNIQUE_ID_(func, testName)(){}	\
-template<void (*T)()> \
+template<int N> \
 class _STABLECODE_TEST_CLASS_(testName): public stablecode::GeneratedClass, public stablecode::Test { \
 public: \
-	_STABLECODE_TEST_CLASS_(testName)():GeneratedClass(""#testName, &__STABLECODE_THIS_MODULE__, stablecode::Source(__FILE__, __LINE__)){} \
+	_STABLECODE_TEST_CLASS_(testName)(std::string declaredName, stablecode::Module* module, stablecode::Source source): \
+		GeneratedClass(declaredName, module, source){} \
 private: \
 	void run(); \
 }; \
-static stablecode::Registerable::Auto _STABLECODE_UNIQUE_ID_(testObject, testName) (new _STABLECODE_TEST_CLASS_(testName)<_STABLECODE_UNIQUE_ID_(func, testName)>()); \
-template<void (*T)()> \
-void _STABLECODE_TEST_CLASS_(testName)<T>::run()
+static stablecode::Registerable::Auto _STABLECODE_UNIQUE_ID_(testObject, testName) ( \
+		new _STABLECODE_TEST_CLASS_(testName)<__LINE__>(""#testName, &__STABLECODE_THIS_MODULE__, stablecode::Source(__FILE__, __LINE__))); \
+template<int N> \
+void _STABLECODE_TEST_CLASS_(testName)<N>::run()
 
 
 //======================================================================
