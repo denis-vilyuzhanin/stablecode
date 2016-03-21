@@ -10,7 +10,6 @@
 
 #include "Discovery.h"
 
-#include "stablecode/GeneratedTest.h"
 #include "stablecode/Module.h"
 #include "GeneratedName.h"
 #include "GeneratedNameParser.h"
@@ -28,11 +27,11 @@ Discovery::~Discovery() {
 	// TODO Auto-generated destructor stub
 }
 
-void Discovery::discover(const list<Registerable*>& objects) {
-	for(Registerable* object: objects) {
+void Discovery::discover(const list<Discoverable*>& objects) {
+	for(Discoverable* object: objects) {
 		const string& className = object->getClassName();
 		cout<<className<<endl;
-		Module::Id sourceModuleId = object->getModule()->getId();
+		//Module::Id sourceModuleId = object->getModule()->getId();
 		GeneratedNameParser parser;
 		string name = "";
 		/*while(parser.parseNext(className)) {
@@ -61,7 +60,7 @@ void Discovery::discover(const list<Registerable*>& objects) {
 
 		Test* test = dynamic_cast<Test*>(object);
 		if (test != nullptr) {
-			cout<<sourceModuleId<<"@"<<endl;
+			//cout<<sourceModuleId<<"@"<<endl;
 			test->run();
 		}
 	}

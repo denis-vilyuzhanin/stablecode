@@ -8,11 +8,11 @@
 #ifndef SRC_DISCOVERY_H_
 #define SRC_DISCOVERY_H_
 
+#include <stablecode/Discoverable.h>
 #include <list>
 #include <map>
 #include <string>
 
-#include "stablecode/Registerable.h"
 #include "stablecode/Module.h"
 #include "TestSuite.h"
 
@@ -24,7 +24,7 @@ public:
 	Discovery();
 	virtual ~Discovery();
 public:
-	void discover(const std::list<Registerable*>&);
+	void discover(const std::list<Discoverable*>&);
 private:
 	struct SuiteKey {
 		std::string suiteName;

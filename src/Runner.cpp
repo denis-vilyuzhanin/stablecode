@@ -9,7 +9,7 @@
 
 #include "Runner.h"
 
-#include "stablecode/Registerable.h"
+#include <stablecode/Discoverable.h>
 #include "stablecode/Test.h"
 #include "Register.h"
 
@@ -25,7 +25,7 @@ Runner::~Runner() {
 }
 
 void Runner::discovery() {
-	for(Registerable* registeredObject : Register::getInstance()->getAllRegisteredObjects()) {
+	for(Discoverable* registeredObject : Register::getInstance()->getAllRegisteredObjects()) {
 		Test* test = dynamic_cast<Test*>(registeredObject);
 		if(test != 0) {
 			tests.push_back(test);

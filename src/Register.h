@@ -8,8 +8,7 @@
 #ifndef SRC_REGISTER_H_
 #define SRC_REGISTER_H_
 
-#include "stablecode/Registerable.h"
-
+#include <stablecode/Discoverable.h>
 #include <list>
 namespace stablecode {
 
@@ -17,19 +16,19 @@ class TestSuite;
 class Test;
 
 class Register {
-	friend Registerable;
+	friend Discoverable;
 public:
 	static Register* getInstance();
 
-	const std::list<Registerable*>& getAllRegisteredObjects() const;
+	const std::list<Discoverable*>& getAllRegisteredObjects() const;
 
 private:
 	Register();
-	void registerObject(Registerable* newTest);
+	void registerObject(Discoverable* newTest);
 private:
 	static Register* INSTANCE;
 
-	std::list<Registerable*> registeredObjects;
+	std::list<Discoverable*> registeredObjects;
 };
 
 } /* namespace stablecode */

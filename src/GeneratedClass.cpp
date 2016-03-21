@@ -11,7 +11,7 @@ namespace stablecode {
 using namespace std;
 
 GeneratedClass::GeneratedClass(string declaredName, Module* module, Source source):
-		Registerable(module), declaredName(declaredName), module(module), source(source) {
+		declaredName(declaredName), module(module), source(source) {
 
 }
 

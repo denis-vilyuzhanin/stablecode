@@ -22,11 +22,11 @@ Register* Register::getInstance() {
 	return INSTANCE;
 }
 
-void Register::registerObject(Registerable* newObject) {
+void Register::registerObject(Discoverable* newObject) {
 	registeredObjects.push_back(newObject);
 }
 
-const std::list<Registerable*>& Register::getAllRegisteredObjects() const {
+const std::list<Discoverable*>& Register::getAllRegisteredObjects() const {
 	return registeredObjects;
 }
 

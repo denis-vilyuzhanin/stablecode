@@ -8,14 +8,14 @@
 #ifndef INCLUDE_STABLECODE_GENERATEDCLASS_H_
 #define INCLUDE_STABLECODE_GENERATEDCLASS_H_
 
+#include <stablecode/Discoverable.h>
 #include <string>
-#include "Registerable.h"
 #include "Module.h"
 #include "Source.h"
 
 namespace stablecode {
 
-class GeneratedClass: public Registerable {
+class GeneratedClass: public Discoverable {
 public:
 	virtual ~GeneratedClass();
 protected:

@@ -31,8 +31,9 @@ public: \
 private: \
 	void run(); \
 }; \
-static stablecode::Registerable::Auto _STABLECODE_UNIQUE_ID_(testObject, testName) ( \
-		new _STABLECODE_TEST_CLASS_(testName)<__LINE__>(""#testName, &__STABLECODE_THIS_MODULE__, stablecode::Source(__FILE__, __LINE__))); \
+static _STABLECODE_TEST_CLASS_(testName)<__LINE__> \
+	_STABLECODE_UNIQUE_ID_(testObject, testName)( \
+			""#testName, &__STABLECODE_THIS_MODULE__, stablecode::Source(__FILE__, __LINE__)); \
 template<int N> \
 void _STABLECODE_TEST_CLASS_(testName)<N>::run()
 
