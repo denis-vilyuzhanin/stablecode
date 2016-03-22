@@ -22,10 +22,10 @@ public:
 
 	bool parseNextSuite();
 
-	std::string prefix()const;
-	std::string type()const;
-	std::string name()const;
-	Id id()const;
+	std::string parsePrefix()const;
+	std::string parseType()const;
+	std::string parseName()const;
+	Id parseId()const;
 
 private:
 	bool parseNext();

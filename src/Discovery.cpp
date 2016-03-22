@@ -42,11 +42,11 @@ void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
 	TestSuite* suite = findOrCreateRootSuite(module);
 	GeneratedNameParser parser(generatedClassObject->getClassName());
 	while(parser.parseNextSuite()) {
-		suite = suite->findOrCreateSuite(parser.id(), parser.name());
+		suite = suite->findOrCreateSuite(parser.parseId(), parser.parseName());
 	}
-	const string& type = parser.type();
+	const string& type = parser.parseType();
 	if (type == "test") {
-		suite->addTest(parser.id(), parser.name(), dynamic_cast<Test*>(generatedClassObject));
+		suite->addTest(parser.parseId(), parser.parseName(), dynamic_cast<Test*>(generatedClassObject));
 	}
 }
 

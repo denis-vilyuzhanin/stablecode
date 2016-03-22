@@ -19,8 +19,8 @@ GeneratedNameParser::GeneratedNameParser(const std::string& targetString): targe
 
 
 bool GeneratedNameParser::parseNextSuite() {
-	if (type() == "suite") {
-		return parseNext() && type() == "suite";
+	if (parseType() == "suite") {
+		return parseNext() && parseType() == "suite";
 	}
 	return false;
 }
@@ -39,19 +39,19 @@ bool GeneratedNameParser::parseNext() {
 	return true;
 }
 
-std::string GeneratedNameParser::prefix() const {
+std::string GeneratedNameParser::parsePrefix() const {
 	return nextFragment.substr(0, typeOffset - DELIMITER.length());
 }
 
-std::string GeneratedNameParser::type() const {
+std::string GeneratedNameParser::parseType() const {
 	return nextFragment.substr(typeOffset, nameOffset - typeOffset - DELIMITER.length());
 }
 
-std::string GeneratedNameParser::name() const {
+std::string GeneratedNameParser::parseName() const {
 	return nextFragment.substr(nameOffset, idOffset - nameOffset - DELIMITER.length());
 }
 
-Id GeneratedNameParser::id() const {
+Id GeneratedNameParser::parseId() const {
 	return Id(std::stoi(nextFragment.substr(idOffset)));
 }
 
