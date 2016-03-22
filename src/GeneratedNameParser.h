@@ -10,16 +10,20 @@
 
 #include <string>
 
+#include  "Id.h"
+
 namespace stablecode {
 
 class GeneratedNameParser {
 public:
+
+	bool parseNextSuite(const std::string& generatedName);
 	bool parseNext(const std::string& generatedName);
 
 	std::string prefix()const;
 	std::string type()const;
 	std::string name()const;
-	std::string id()const;
+	Id id()const;
 private:
 	static const std::string START;
 	static const std::string END;

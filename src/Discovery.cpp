@@ -11,7 +11,6 @@
 #include "Discovery.h"
 
 #include "stablecode/Module.h"
-#include "GeneratedName.h"
 #include "GeneratedNameParser.h"
 
 
@@ -71,13 +70,16 @@ void Discovery::discover() {
 }
 
 void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
-	generatedClassObject->init();
 	Module* module = generatedClassObject->getModule();
-	TestSuite* rootSuite = findOrCreateRootSuite(module);
-	for(string name : generatedClassObject->getScope()) {
-
+	TestSuite* suite = findOrCreateRootSuite(module);
+	GeneratedNameParser parser;
+	while(parser.parseNextSuite(generatedClassObject->getClassName())) {
+		suite = suite->findOrCreateSuite(parser.id(), parser.name());
 	}
-
+	const string& type = parser.type();
+	if (type == "test") {
+		suite->addTest(parser.id(), parser.name(), dynamic_cast<Test*>(generatedClassObject));
+	}
 }
 
 TestSuite* Discovery::findOrCreateRootSuite(Module* module) {
@@ -93,5 +95,7 @@ TestSuite* Discovery::findOrCreateRootSuite(Module* module) {
 void Discovery::toBeDiscovered(Discoverable* object) {
 	toBeDiscoveredObjects.push_back(object);
 }
+
+
 
 } /* namespace tablecode */

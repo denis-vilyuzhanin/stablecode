@@ -19,12 +19,21 @@ TestSuite::~TestSuite() {
 
 }
 
-void TestSuite::addTest(Test* newTest) {
-	tests.push_back(newTest);
+void TestSuite::addTest(Id id, const std::string& name, Test* test) {
+	testsByName[name] = test;
+	testsByDeclaredOrder[id] = test;
 }
 
-void TestSuite::addSuite(TestSuite* suite) {
-	suites.push_back(suite);
+TestSuite* TestSuite::findOrCreateSuite(Id id, string name) {
+	auto found = suitesByName.find(name);
+	if (found == suitesByName.end()) {
+		TestSuite* newSuite = new TestSuite(name);
+		suitesByName[name] = newSuite;
+		suitesByDeclaredOrder[id] = newSuite;
+		return newSuite;
+	}
+	return found->second;
 }
 
 } /* namespace stablecode */
+

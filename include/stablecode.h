@@ -8,7 +8,6 @@
 #ifndef INCLUDE_STABLECODE_H_
 #define INCLUDE_STABLECODE_H_
 
-#include "stablecode/Scope.h"
 #include "stablecode/Module.h"
 #include "stablecode/Discoverable.h"
 #include "stablecode/configuration.h"

@@ -10,7 +10,10 @@
 
 #include <list>
 #include <string>
+#include <map>
+
 #include "stablecode/Test.h"
+#include "Id.h"
 
 namespace stablecode {
 
@@ -19,14 +22,16 @@ public:
 	TestSuite(std::string name);
 	virtual ~TestSuite();
 public:
-	void addTest(Test*);
-	void addSuite(TestSuite*);
-
+	void addTest(Id id, const std::string& name, Test*);
+	TestSuite* findOrCreateSuite(Id id, std::string name);
 	const std::string& getName() const {return name;}
 private:
 	std::string name;
 	std::list<Test*> tests;
-	std::list<TestSuite*> suites;
+	std::map<std::string, Test*> testsByName;
+	std::map<Id, Test*> testsByDeclaredOrder;
+	std::map<Id, TestSuite*> suitesByDeclaredOrder;
+	std::map<std::string, TestSuite*> suitesByName;
 };
 
 } /* namespace stablecode */

@@ -15,6 +15,13 @@ const std::string GeneratedNameParser::END = "$__";
 const std::string GeneratedNameParser::DELIMITER = "$";
 
 
+bool GeneratedNameParser::parseNextSuite(const std::string& generatedName) {
+	if (type() == "suite") {
+		return parseNext(generatedName) && type() == "suite";
+	}
+	return false;
+}
+
 bool GeneratedNameParser::parseNext(const std::string& generatedName) {
 	fragmentBeginOffset = generatedName.find(START, fragmentEndOffset);
 	if (fragmentBeginOffset == string::npos) {
@@ -41,8 +48,8 @@ std::string GeneratedNameParser::name() const {
 	return nextFragment.substr(nameOffset, idOffset - nameOffset - DELIMITER.length());
 }
 
-std::string GeneratedNameParser::id() const {
-	return nextFragment.substr(idOffset);
+Id GeneratedNameParser::id() const {
+	return Id(std::stoi(nextFragment.substr(idOffset)));
 }
 
 } /* namespace stablecode */
