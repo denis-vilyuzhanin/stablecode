@@ -14,21 +14,24 @@ const std::string GeneratedNameParser::START = "__$";
 const std::string GeneratedNameParser::END = "$__";
 const std::string GeneratedNameParser::DELIMITER = "$";
 
+GeneratedNameParser::GeneratedNameParser(const std::string& targetString): targetString(targetString) {}
 
-bool GeneratedNameParser::parseNextSuite(const std::string& generatedName) {
+
+
+bool GeneratedNameParser::parseNextSuite() {
 	if (type() == "suite") {
-		return parseNext(generatedName) && type() == "suite";
+		return parseNext() && type() == "suite";
 	}
 	return false;
 }
 
-bool GeneratedNameParser::parseNext(const std::string& generatedName) {
-	fragmentBeginOffset = generatedName.find(START, fragmentEndOffset);
+bool GeneratedNameParser::parseNext() {
+	fragmentBeginOffset = targetString.find(START, fragmentEndOffset);
 	if (fragmentBeginOffset == string::npos) {
 		return false;
 	}
-	fragmentEndOffset = generatedName.find(END, fragmentBeginOffset);
-	nextFragment = generatedName.substr(
+	fragmentEndOffset = targetString.find(END, fragmentBeginOffset);
+	nextFragment = targetString.substr(
 			fragmentBeginOffset + START.length(), fragmentEndOffset - fragmentBeginOffset - END.length());
 	typeOffset = nextFragment.find(DELIMITER, 0) + DELIMITER.length();
 	nameOffset = nextFragment.find(DELIMITER, typeOffset) + DELIMITER.length();

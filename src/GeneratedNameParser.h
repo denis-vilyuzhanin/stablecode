@@ -15,20 +15,27 @@
 namespace stablecode {
 
 class GeneratedNameParser {
+
+public:
+	GeneratedNameParser(const std::string& targetString);
 public:
 
-	bool parseNextSuite(const std::string& generatedName);
-	bool parseNext(const std::string& generatedName);
+	bool parseNextSuite();
 
 	std::string prefix()const;
 	std::string type()const;
 	std::string name()const;
 	Id id()const;
+
+private:
+	bool parseNext();
+
 private:
 	static const std::string START;
 	static const std::string END;
 	static const std::string DELIMITER;
 
+	std::string targetString;
 	size_t fragmentBeginOffset = 0;
 	size_t fragmentEndOffset = 0;
 	std::string nextFragment;

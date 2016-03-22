@@ -34,46 +34,14 @@ void Discovery::discover() {
 		if (generatedClass != nullptr) {
 			discoverGeneratedClass(generatedClass);
 		}
-		//Module::Id sourceModuleId = object->getModule()->getId();
-		GeneratedNameParser parser;
-		string name = "";
-		/*while(parser.parseNext(className)) {
-			if (parser.type() != "suite") {
-				break;
-			}
-			name.append(parser.name());
-			SuiteKey key;
-			key.moduleId = sourceModuleId;
-			key.suiteName = name;
-			TestSuite* suite;
-			auto suitesIter = suites.find(key);
-			if (suitesIter != suites.end()) {
-				suite = suitesIter->second;
-			} else {
-				suite = new TestSuite();
-				suites[key] = suite;
-			}
-		}*/
-		/*GeneratedTest* test = dynamic_cast<GeneratedTest*>(object);
-		if (object != nullptr) {
-
-			GeneratedName testName();
-
-		}*/
-
-		Test* test = dynamic_cast<Test*>(object);
-		if (test != nullptr) {
-			//cout<<sourceModuleId<<"@"<<endl;
-			test->run();
-		}
 	}
 }
 
 void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
 	Module* module = generatedClassObject->getModule();
 	TestSuite* suite = findOrCreateRootSuite(module);
-	GeneratedNameParser parser;
-	while(parser.parseNextSuite(generatedClassObject->getClassName())) {
+	GeneratedNameParser parser(generatedClassObject->getClassName());
+	while(parser.parseNextSuite()) {
 		suite = suite->findOrCreateSuite(parser.id(), parser.name());
 	}
 	const string& type = parser.type();
