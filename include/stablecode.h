@@ -19,4 +19,6 @@
 #include "stablecode/GeneratedClass.h"
 #include "stablecode/macros.h"
 
+using namespace stablecode::statement;
+
 #endif /* INCLUDE_STABLECODE_H_ */

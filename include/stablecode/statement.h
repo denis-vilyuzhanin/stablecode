@@ -10,18 +10,21 @@
 
 #include "Value.h"
 #include "TValue.h"
-
+#include "Source.h"
 #include <string>
 
 namespace stablecode {
 namespace statement {
 
-typedef void* Void;
+
 
 struct ExpectationStatement;
 struct ValueStatement;
 struct BooleanValueStatement;
 struct StringValueStatement;
+
+ExpectationStatement& expect(std::string reason);
+ExpectationStatement& expect(std::string reason, Source source);
 
 struct ExpectationStatement {
 

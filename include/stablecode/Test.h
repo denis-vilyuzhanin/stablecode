@@ -9,8 +9,8 @@
 #define INCLUDE_STABLECODE_TEST_H_
 
 #include "Value.h"
-#include "statement.h"
 #include "Source.h"
+#include "statement.h"
 #include <string>
 #include <functional>
 namespace stablecode {
@@ -27,8 +27,8 @@ public:
 	virtual void run();
 
 protected:
-	ExpectationStatement& expect(std::string reason);
-	ExpectationStatement& expect(std::string reason, Source source);
+	/*ExpectationStatement& expect(std::string reason);
+	ExpectationStatement& expect(std::string reason, Source source);*/
 };
 
 } /* namespace stablecode */

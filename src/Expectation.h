@@ -9,9 +9,9 @@
 #define SRC_EXPECTATION_H_
 
 #include <string>
-
-#include "stablecode/statement.h"
 #include "stablecode/Source.h"
+#include "stablecode/statement.h"
+
 
 namespace stablecode {
 using namespace statement;
