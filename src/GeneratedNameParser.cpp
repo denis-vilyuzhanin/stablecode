@@ -14,12 +14,15 @@ const std::string GeneratedNameParser::START = "__$";
 const std::string GeneratedNameParser::END = "$__";
 const std::string GeneratedNameParser::DELIMITER = "$";
 
-GeneratedNameParser::GeneratedNameParser(const std::string& targetString): targetString(targetString) {}
+GeneratedNameParser::GeneratedNameParser(const std::string& targetString): targetString(targetString) {
+
+}
 
 
 
 bool GeneratedNameParser::parseNextSuite() {
-	if (parseType() == "suite") {
+	auto type = parseType();
+	if (type == "suite" || type == "") {
 		return parseNext() && parseType() == "suite";
 	}
 	return false;

@@ -42,6 +42,7 @@ void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
 	TestSuite* suite = findOrCreateRootSuite(module, generatedClassObject->getSource());
 	GeneratedNameParser parser(generatedClassObject->getClassName());
 	while(parser.parseNextSuite()) {
+
 		suite = suite->findOrCreateSuite(parser.parseId(), parser.parseName());
 	}
 	const string& type = parser.parseType();
