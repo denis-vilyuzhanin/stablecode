@@ -21,7 +21,7 @@ TestSuite::~TestSuite() {
 
 void TestSuite::addTest(Id id, const std::string& name, Test* test) {
 	testsByName[name] = test;
-	testsByDeclaredOrder[id] = test;
+	testsByDeclaredOrder[id] = name;
 }
 
 TestSuite* TestSuite::findOrCreateSuite(Id id, string name) {
@@ -29,10 +29,15 @@ TestSuite* TestSuite::findOrCreateSuite(Id id, string name) {
 	if (found == suitesByName.end()) {
 		TestSuite* newSuite = new TestSuite(name);
 		suitesByName[name] = newSuite;
-		suitesByDeclaredOrder[id] = newSuite;
+		suitesByDeclaredOrder[id] = name;
 		return newSuite;
 	}
 	return found->second;
+}
+
+TestSuite* TestSuite::findByName(const std::string& name) {
+	auto found = suitesByName.find(name);
+	return found != suitesByName.end() ? found->second : nullptr;
 }
 
 } /* namespace stablecode */

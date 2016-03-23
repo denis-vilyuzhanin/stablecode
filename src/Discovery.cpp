@@ -17,7 +17,7 @@
 namespace stablecode {
 using namespace std;
 
-list<Discoverable*> Discovery::toBeDiscoveredObjects;
+list<Discoverable*>* Discovery::toBeDiscoveredObjects = nullptr;
 
 Discovery::Discovery() {
 	// TODO Auto-generated constructor stub
@@ -29,7 +29,7 @@ Discovery::~Discovery() {
 }
 
 void Discovery::discover() {
-	for(Discoverable* object: toBeDiscoveredObjects) {
+	for(Discoverable* object: *toBeDiscoveredObjects) {
 		GeneratedClass* generatedClass = dynamic_cast<GeneratedClass*>(object);
 		if (generatedClass != nullptr) {
 			discoverGeneratedClass(generatedClass);
@@ -39,7 +39,7 @@ void Discovery::discover() {
 
 void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
 	Module* module = generatedClassObject->getModule();
-	TestSuite* suite = findOrCreateRootSuite(module);
+	TestSuite* suite = findOrCreateRootSuite(module, generatedClassObject->getSource());
 	GeneratedNameParser parser(generatedClassObject->getClassName());
 	while(parser.parseNextSuite()) {
 		suite = suite->findOrCreateSuite(parser.parseId(), parser.parseName());
@@ -50,10 +50,12 @@ void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
 	}
 }
 
-TestSuite* Discovery::findOrCreateRootSuite(Module* module) {
+TestSuite* Discovery::findOrCreateRootSuite(Module* module, const Source& source) {
 	auto foundRootSuite = suites.find(module->getId());
 	if (foundRootSuite == suites.end()) {
-		TestSuite* newRootSuite = new TestSuite(module->getSource().getFile());
+		string newTestSuiteName;
+		newTestSuiteName.append(source.getFile()).append("@").append(to_string(module->getId()));
+		TestSuite* newRootSuite = new TestSuite(newTestSuiteName);
 		suites[module->getId()] = newRootSuite;
 		return newRootSuite;
 	}
@@ -61,7 +63,10 @@ TestSuite* Discovery::findOrCreateRootSuite(Module* module) {
 }
 
 void Discovery::toBeDiscovered(Discoverable* object) {
-	toBeDiscoveredObjects.push_back(object);
+	if (toBeDiscoveredObjects == nullptr) {
+		toBeDiscoveredObjects = new list<Discoverable*>();
+	}
+	toBeDiscoveredObjects->push_back(object);
 }
 
 

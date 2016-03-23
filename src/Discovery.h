@@ -28,14 +28,14 @@ public:
 	virtual ~Discovery();
 public:
 	void discover();
+	const std::map<Module::Id, TestSuite*>& getDiscoveredSuites()const {return suites;}
 private:
 	void discoverGeneratedClass(GeneratedClass*);
 private:
 	static void toBeDiscovered(Discoverable* object);
-	TestSuite* findOrCreateRootSuite(Module* module);
-
+	TestSuite* findOrCreateRootSuite(Module* module, const Source& source);
 private:
-	static std::list<Discoverable*> toBeDiscoveredObjects;
+	static std::list<Discoverable*>* toBeDiscoveredObjects;
 
 	std::map<Module::Id, TestSuite*> suites;
 };

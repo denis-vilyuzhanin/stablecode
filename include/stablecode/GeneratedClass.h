@@ -23,6 +23,7 @@ public:
 public:
 
 	Module* getModule() const {return module;}
+	const Source& getSource() const {return source;}
 
 protected:
 	GeneratedClass(std::string declaredName, Module* module, Source source);

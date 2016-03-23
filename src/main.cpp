@@ -15,6 +15,17 @@
  using namespace std;
  using namespace stablecode;
 
+ void print(TestSuite* suite, string intend) {
+	 for(auto& entry: suite->getTests()) {
+		 cout<<intend<<entry.second<<endl;
+	 }
+	 for(auto& entry: suite->getSuites()) {
+		 TestSuite* subSuite = suite->findByName(entry.second);
+		 cout<<intend<<entry.second<<endl;
+		 print(subSuite, intend + "  ");
+	 }
+ }
+
  int main() {
 	 /*for(Registerable* object : Register::getInstance()->getAllRegisteredObjects()) {
 		 cout<<typeid(*object).name()<<endl;
@@ -25,6 +36,11 @@
 	 }*/
 	 Discovery discovery;
 	 discovery.discover();
+
+	 for(auto& rootSuiteEntry: discovery.getDiscoveredSuites()) {
+		 cout<<rootSuiteEntry.second->getName()<<endl;
+		 print(rootSuiteEntry.second, " ");
+	 }
 
 	 Runner runnner;
 
