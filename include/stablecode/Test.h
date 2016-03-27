@@ -19,16 +19,19 @@ using namespace statement;
 class Test{
 
 public:
-	Test();
+	Test(const std::string& name);
 	virtual ~Test();
 protected:
 
 public:
 	virtual void run();
 
+	const std::string& getName() const {return name;}
 protected:
 	/*ExpectationStatement& expect(std::string reason);
 	ExpectationStatement& expect(std::string reason, Source source);*/
+private:
+	std::string name;
 };
 
 } /* namespace stablecode */

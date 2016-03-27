@@ -17,7 +17,9 @@
 
  void print(TestSuite* suite, string intend) {
 	 for(auto& entry: suite->getTests()) {
-		 cout<<intend<<entry.second<<endl;
+		 //cout<<intend<<entry.second->getName()<<endl;
+		 entry.second->run();
+
 	 }
 	 for(auto& entry: suite->getSuites()) {
 		 TestSuite* subSuite = suite->findByName(entry.second);

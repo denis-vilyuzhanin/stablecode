@@ -27,12 +27,12 @@ public:
 	TestSuite* findByName(const std::string& name);
 	const std::string& getName() const {return name;}
 	const std::map<Id, std::string>& getSuites() const {return suitesByDeclaredOrder;}
-	const std::map<Id, std::string>& getTests() const {return testsByDeclaredOrder;}
+	const std::map<Id, Test*>& getTests() const {return testsByDeclaredOrder;}
 private:
 	std::string name;
 	std::list<Test*> tests;
 	std::map<std::string, Test*> testsByName;
-	std::map<Id, std::string> testsByDeclaredOrder;
+	std::map<Id, Test*> testsByDeclaredOrder;
 	std::map<std::string, TestSuite*> suitesByName;
 	std::map<Id, std::string> suitesByDeclaredOrder;
 };

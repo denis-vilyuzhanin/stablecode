@@ -8,9 +8,10 @@
 #include <iostream>
 #include <list>
 
-#include "Discovery.h"
-
 #include "stablecode/Module.h"
+
+#include "Discovery.h"
+#include "GeneratedTest.h"
 #include "GeneratedNameParser.h"
 
 
@@ -47,7 +48,9 @@ void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
 	}
 	const string& type = parser.parseType();
 	if (type == "test") {
-		suite->addTest(parser.parseId(), parser.parseName(), dynamic_cast<Test*>(generatedClassObject));
+		//suite->addTest(parser.parseId(), parser.parseName(), dynamic_cast<Test*>(generatedClassObject));
+		Test* generatedTest = new GeneratedTest(parser.parseName(), generatedClassObject->getCode());
+		suite->addTest(parser.parseId(), parser.parseName(), generatedTest);
 	}
 }
 

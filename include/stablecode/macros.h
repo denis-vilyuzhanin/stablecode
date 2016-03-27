@@ -22,20 +22,17 @@ namespace _STABLECODE_SUITE_(suiteName)
 // TEST macros
 #define TEST(testName) STABLECODE_TEST(testName)
 #define STABLECODE_TEST(testName) \
-static void _STABLECODE_UNIQUE_ID_(func, testName)(){}	\
 template<int N> \
-class _STABLECODE_TEST_CLASS_(testName): public stablecode::GeneratedClass, public stablecode::Test { \
+class _STABLECODE_TEST_CLASS_(testName): public stablecode::GeneratedClass { \
 public: \
-	_STABLECODE_TEST_CLASS_(testName)(std::string declaredName, stablecode::Module* module, stablecode::Source source): \
-		GeneratedClass(declaredName, module, source){} \
-private: \
-	void run(); \
+	_STABLECODE_TEST_CLASS_(testName)(std::string declaredName, stablecode::Module* module, stablecode::GeneratedClass::Code code, stablecode::Source source): \
+		GeneratedClass(declaredName, module, code, source){} \
 }; \
+static void _STABLECODE_TEST_CODE_(testName)();\
 static _STABLECODE_TEST_CLASS_(testName)<__LINE__> \
 	_STABLECODE_UNIQUE_ID_(testObject, testName)( \
-			""#testName, &__STABLECODE_THIS_MODULE__, stablecode::Source(__FILE__, __LINE__)); \
-template<int N> \
-void _STABLECODE_TEST_CLASS_(testName)<N>::run()
+			""#testName, &__STABLECODE_THIS_MODULE__, _STABLECODE_TEST_CODE_(testName), stablecode::Source(__FILE__, __LINE__)); \
+static void _STABLECODE_TEST_CODE_(testName)()
 
 
 //======================================================================
@@ -60,6 +57,7 @@ void __$startup_type$__LINE__::run()
 
 #define _STABLECODE_SUITE_(name) _STABLECODE_UNIQUE_ID_(suite, name)
 #define _STABLECODE_TEST_CLASS_(name)  _STABLECODE_UNIQUE_ID_(test, name)
+#define _STABLECODE_TEST_CODE_(name)  _STABLECODE_UNIQUE_ID_(testCode, name)
 #define _STABLECODE_UNIQUE_ID_(type, name) _STABLECODE_ID_(type, name, __LINE__)
 #define _STABLECODE_ID_(type, name, id) _STABLECODE_ID_CONCAT_(stablecode, type, name, id)
 #define _STABLECODE_ID_CONCAT_(prefix, type, name, id) __$##prefix##$##type##$##name##$##id##$__

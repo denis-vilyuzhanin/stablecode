@@ -19,17 +19,20 @@ namespace stablecode {
 
 class GeneratedClass: public Discoverable {
 public:
+	typedef void(*Code)();
+public:
 	virtual ~GeneratedClass();
 public:
 
 	Module* getModule() const {return module;}
 	const Source& getSource() const {return source;}
-
+	Code getCode() const {return code;}
 protected:
-	GeneratedClass(std::string declaredName, Module* module, Source source);
+	GeneratedClass(std::string declaredName, Module* module, Code code, Source source);
 protected:
 	std::string declaredName;
 	Module* module;
+	Code code;
 	Source source;
 };
 

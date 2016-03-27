@@ -21,7 +21,7 @@ TestSuite::~TestSuite() {
 
 void TestSuite::addTest(Id id, const std::string& name, Test* test) {
 	testsByName[name] = test;
-	testsByDeclaredOrder[id] = name;
+	testsByDeclaredOrder[id] = test;
 }
 
 TestSuite* TestSuite::findOrCreateSuite(Id id, string name) {

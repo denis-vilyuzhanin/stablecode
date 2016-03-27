@@ -14,12 +14,12 @@
 #include "Expectation.h"
 
 namespace stablecode {
-
-Test::Test() {
+using namespace std;
+Test::Test(const string& name): name(name) {
 }
 
 Test::~Test() {
-	// TODO Auto-generated destructor stub
+
 }
 
 void Test::run() {

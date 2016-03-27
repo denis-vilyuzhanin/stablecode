@@ -2,6 +2,7 @@
 
 
 #include <iostream>
+#include <functional>
 using namespace std;
 
 #include "stablecode.h"
@@ -60,4 +61,23 @@ SUITE(mySuite) {
 STARTUP {
 	cout<<"Startup"<<endl;
 }
+
+class Foo {
+public:
+	typedef function<void()> Code;
+public:
+
+	Foo(Code code) {
+
+	}
+
+};
+static void fooFunction();
+
+Foo foo(fooFunction);
+
+static void fooFunction() {
+
+}
+
 
