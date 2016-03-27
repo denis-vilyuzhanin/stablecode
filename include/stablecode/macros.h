@@ -21,19 +21,24 @@ namespace _STABLECODE_SUITE_(suiteName)
 //======================================================================
 // TEST macros
 #define TEST(testName) STABLECODE_TEST(testName)
-#define STABLECODE_TEST(testName) \
-template<int N> \
-class _STABLECODE_TEST_CLASS_(testName): public stablecode::GeneratedClass { \
-public: \
-	_STABLECODE_TEST_CLASS_(testName)(std::string declaredName, stablecode::Module* module, stablecode::GeneratedClass::Code code, stablecode::Source source): \
-		GeneratedClass(declaredName, module, code, source){} \
-}; \
-static void _STABLECODE_TEST_CODE_(testName)();\
-static _STABLECODE_TEST_CLASS_(testName)<__LINE__> \
-	_STABLECODE_UNIQUE_ID_(testObject, testName)( \
-			""#testName, &__STABLECODE_THIS_MODULE__, _STABLECODE_TEST_CODE_(testName), stablecode::Source(__FILE__, __LINE__)); \
-static void _STABLECODE_TEST_CODE_(testName)()
+#define STABLECODE_TEST(declaredTestName) \
+	_STABLECODE_GENERATED_CLASS_(declaredTestName, \
+								 _STABLECODE_UNIQUE_ID_(test, declaredTestName), \
+								 _STABLECODE_UNIQUE_ID_(testCode, declaredTestName), \
+								 _STABLECODE_UNIQUE_ID_(testObject, declaredTestName))
 
+//======================================================================
+// Generated class
+#define _STABLECODE_GENERATED_CLASS_($name, $class, $code, $object) \
+	template<int N> \
+	class $class: public stablecode::GeneratedClass { \
+	public: \
+		$class(std::string declaredName, stablecode::Module* module, stablecode::GeneratedClass::Code code, stablecode::Source source): \
+		GeneratedClass(declaredName, module, code, source){} \
+	}; \
+	static void $code(); \
+	static $class<__LINE__> $object(#$name, &__STABLECODE_THIS_MODULE__, $code, stablecode::Source(__FILE__, __LINE__)); \
+	static void $code()
 
 //======================================================================
 //STARTUP macros
@@ -56,8 +61,7 @@ void __$startup_type$__LINE__::run()
 //ID macroses
 
 #define _STABLECODE_SUITE_(name) _STABLECODE_UNIQUE_ID_(suite, name)
-#define _STABLECODE_TEST_CLASS_(name)  _STABLECODE_UNIQUE_ID_(test, name)
-#define _STABLECODE_TEST_CODE_(name)  _STABLECODE_UNIQUE_ID_(testCode, name)
+
 #define _STABLECODE_UNIQUE_ID_(type, name) _STABLECODE_ID_(type, name, __LINE__)
 #define _STABLECODE_ID_(type, name, id) _STABLECODE_ID_CONCAT_(stablecode, type, name, id)
 #define _STABLECODE_ID_CONCAT_(prefix, type, name, id) __$##prefix##$##type##$##name##$##id##$__
