@@ -17,7 +17,7 @@
 
  void print(TestSuite* suite, string intend) {
 	 for(auto& entry: suite->getTests()) {
-		 //cout<<intend<<entry.second->getName()<<endl;
+		 cout<<intend<<entry.second->getName()<<endl;
 		 entry.second->run();
 
 	 }

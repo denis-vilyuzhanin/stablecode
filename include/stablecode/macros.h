@@ -12,10 +12,7 @@
 // SUITE macros
 #define SUITE(suiteName) STABLECODE_SUITE(suiteName)
 #define STABLECODE_SUITE(suiteName) \
-namespace _STABLECODE_SUITE_(suiteName) { \
-	static stablecode::Source __THIS_SUITE__(__FILE__, __LINE__);\
-} \
-namespace _STABLECODE_SUITE_(suiteName)
+namespace _STABLECODE_UNIQUE_ID_(suite, suiteName)
 
 
 //======================================================================
@@ -37,7 +34,7 @@ namespace _STABLECODE_SUITE_(suiteName)
 		GeneratedClass(declaredName, module, code, source){} \
 	}; \
 	static void $code(); \
-	static $class<__LINE__> $object(#$name, &__STABLECODE_THIS_MODULE__, $code, stablecode::Source(__FILE__, __LINE__)); \
+	static $class<__LINE__> $object(""#$name, &__STABLECODE_THIS_MODULE__, $code, stablecode::Source(__FILE__, __LINE__)); \
 	static void $code()
 
 //======================================================================
@@ -59,8 +56,6 @@ void __$startup_type$__LINE__::run()
 
 //======================================================================
 //ID macroses
-
-#define _STABLECODE_SUITE_(name) _STABLECODE_UNIQUE_ID_(suite, name)
 
 #define _STABLECODE_UNIQUE_ID_(type, name) _STABLECODE_ID_(type, name, __LINE__)
 #define _STABLECODE_ID_(type, name, id) _STABLECODE_ID_CONCAT_(stablecode, type, name, id)
