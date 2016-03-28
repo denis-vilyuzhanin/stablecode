@@ -8,11 +8,12 @@
 #ifndef INCLUDE_STABLECODE_TEST_H_
 #define INCLUDE_STABLECODE_TEST_H_
 
-#include "Value.h"
-#include "Source.h"
-#include "statement.h"
 #include <string>
-#include <functional>
+
+#include "stablecode/Value.h"
+#include "stablecode/Source.h"
+#include "stablecode/statement.h"
+
 namespace stablecode {
 using namespace statement;
 

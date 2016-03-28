@@ -10,7 +10,8 @@
 
 #include <string>
 #include "stablecode/GeneratedClass.h"
-#include "stablecode/Test.h"
+
+#include "Test.h"
 
 
 namespace stablecode {

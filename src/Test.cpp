@@ -9,12 +9,13 @@
 #include <iostream>
 
 
-#include "stablecode/Test.h"
+#include "Test.h"
 
 #include "Expectation.h"
 
 namespace stablecode {
 using namespace std;
+
 Test::Test(const string& name): name(name) {
 }
 

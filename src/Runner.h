@@ -8,7 +8,7 @@
 #ifndef SRC_RUNNER_H_
 #define SRC_RUNNER_H_
 
-#include "stablecode/Test.h"
+#include "Test.h"
 
 #include <list>
 

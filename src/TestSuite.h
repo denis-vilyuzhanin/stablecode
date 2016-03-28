@@ -12,7 +12,7 @@
 #include <string>
 #include <map>
 
-#include "stablecode/Test.h"
+#include "Test.h"
 #include "Id.h"
 
 namespace stablecode {

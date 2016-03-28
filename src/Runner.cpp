@@ -9,8 +9,6 @@
 
 #include "Runner.h"
 
-#include <stablecode/Discoverable.h>
-#include "stablecode/Test.h"
 
 namespace stablecode {
 

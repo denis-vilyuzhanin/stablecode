@@ -15,7 +15,6 @@
 #include "stablecode/Value.h"
 #include "stablecode/TValue.h"
 #include "stablecode/statement.h"
-#include "stablecode/Test.h"
 #include "stablecode/GeneratedClass.h"
 #include "stablecode/macros.h"
 
