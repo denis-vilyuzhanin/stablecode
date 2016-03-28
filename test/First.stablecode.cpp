@@ -7,11 +7,32 @@ using namespace std;
 
 #include "stablecode.h"
 
+VERIFY {
+	cout<<"First Verify Test 1"<<endl;
+}
+
+BEFORE {
+	cout<<"First Before Test 1"<<endl;
+}
+
+AFTER {
+	cout<<"First After Test 1"<<endl;
+}
+
 TEST(firstTest) {
 	cout<<"Test Run 1"<<endl;
 }
-TEST(firstTest) {
 
+TEST(firstTest) {
+	cout<<endl;
+}
+
+AFTER {
+	cout<<"Second After Test 1"<<endl;
+}
+
+BEFORE {
+	cout<<"Second Before Test 1"<<endl;
 }
 
 TEST(secondTest) {
@@ -29,55 +50,67 @@ TEST(secondTest) {
 	EXPECT("checking b flag").value(b).isFalse();
 	EXPECT().value(a).equal(b);
 	expect("test1").value(b).isTrue();
-
+	cout<<endl;
 
 }
 
+VERIFY {
+	cout<<"Second Verify Test 1"<<endl;
+}
 
 SUITE(mySuite) {
 
-	TEST(firstTest) {
+	VERIFY {
+		cout<<"First Verify Test in mySuite 1"<<endl;
+	}
 
+	AFTER {
+		cout<<"First After Test in mySuite 1"<<endl;
+	}
+
+	BEFORE {
+		cout<<"First Before Test in mySuite 1"<<endl;
+	}
+
+	TEST(firstTest) {
+		cout<<endl;
+	}
+
+	VERIFY {
+		cout<<"Second Verify Test in mySuite 1"<<endl;
+	}
+
+	BEFORE {
+		cout<<"Second Before Test in mySuite 1"<<endl;
 	}
 
 	TEST(secondTest) {
-
+		cout<<endl;
 	}
 
 	SUITE(subSuite) {
-		TEST(firstTest) {
 
+		AFTER {
+			cout<<"First After Test in subSuite 1"<<endl;
 		}
+
+		BEFORE {
+			cout<<"First Before Test in subSuite 1"<<endl;
+		}
+		TEST(firstTest) {
+			cout<<endl;
+		}
+
+		VERIFY {
+			cout<<"First Verify Test in subSuite 1"<<endl;
+		}
+
 
 	}
 }
 
 SUITE(mySuite) {
 	TEST(firstTest) {
-
+		cout<<endl;
 	}
 }
-
-STARTUP {
-	cout<<"Startup"<<endl;
-}
-
-class Foo {
-public:
-	typedef function<void()> Code;
-public:
-
-	Foo(Code code) {
-
-	}
-
-};
-static void fooFunction();
-
-Foo foo(fooFunction);
-
-static void fooFunction() {
-
-}
-
-

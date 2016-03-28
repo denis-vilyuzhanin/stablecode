@@ -25,6 +25,34 @@ namespace _STABLECODE_UNIQUE_ID_(suite, suiteName)
 								 _STABLECODE_UNIQUE_ID_(testObject, declaredTestName))
 
 //======================================================================
+// BEFORE macros
+#define BEFORE STABLECODE_BEFORE
+#define STABLECODE_BEFORE \
+	_STABLECODE_GENERATED_CLASS_(before, \
+								 _STABLECODE_UNIQUE_ID_(before, before), \
+								 _STABLECODE_UNIQUE_ID_(beforeCode, before), \
+								 _STABLECODE_UNIQUE_ID_(beforeObject, before))
+
+//======================================================================
+// AFTER macros
+#define AFTER STABLECODE_AFTER
+#define STABLECODE_AFTER \
+	_STABLECODE_GENERATED_CLASS_(after, \
+								 _STABLECODE_UNIQUE_ID_(after, after), \
+								 _STABLECODE_UNIQUE_ID_(afterCode, after), \
+								 _STABLECODE_UNIQUE_ID_(afterObject, after))
+
+//======================================================================
+// VERIFY macros
+#define VERIFY STABLECODE_VERIFY
+#define STABLECODE_VERIFY \
+	_STABLECODE_GENERATED_CLASS_(verify, \
+								 _STABLECODE_UNIQUE_ID_(verify, verify), \
+								 _STABLECODE_UNIQUE_ID_(verifyCode, verify), \
+								 _STABLECODE_UNIQUE_ID_(verifyObject, verify))
+
+
+//======================================================================
 // Generated class
 #define _STABLECODE_GENERATED_CLASS_($name, $class, $code, $object) \
 	template<int N> \

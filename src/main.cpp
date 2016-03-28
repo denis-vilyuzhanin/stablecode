@@ -16,15 +16,27 @@
  using namespace stablecode;
 
  void print(TestSuite* suite, string intend) {
+	 for(auto& entry: suite->getBefores()) {
+		 cout<<intend<<"Before: ";
+		 entry.second->run();
+	 }
 	 for(auto& entry: suite->getTests()) {
-		 cout<<intend<<entry.second->getName()<<endl;
+		 cout<<intend<<"Test["<<entry.second->getName()<<"]: ";
 		 entry.second->run();
 
+	 }
+	 for(auto& entry: suite->getVerifies()) {
+	 	 cout<<intend<<"Verify: ";
+	 	 entry.second->run();
 	 }
 	 for(auto& entry: suite->getSuites()) {
 		 TestSuite* subSuite = suite->findByName(entry.second);
 		 cout<<intend<<entry.second<<endl;
 		 print(subSuite, intend + "  ");
+	 }
+	 for(auto& entry: suite->getAfters()) {
+	 	 cout<<intend<<"After: ";
+	 	 entry.second->run();
 	 }
  }
 

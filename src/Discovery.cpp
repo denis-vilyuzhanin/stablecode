@@ -13,7 +13,7 @@
 #include "Discovery.h"
 #include "GeneratedTest.h"
 #include "GeneratedNameParser.h"
-
+#include "GeneratedRunnable.h"
 
 namespace stablecode {
 using namespace std;
@@ -51,6 +51,15 @@ void Discovery::discoverGeneratedClass(GeneratedClass* generatedClassObject) {
 		//suite->addTest(parser.parseId(), parser.parseName(), dynamic_cast<Test*>(generatedClassObject));
 		Test* generatedTest = new GeneratedTest(parser.parseName(), generatedClassObject->getCode());
 		suite->addTest(parser.parseId(), parser.parseName(), generatedTest);
+	} else if (type == "before") {
+		Runnable* generatedRunnableBefore = new GeneratedRunnable(generatedClassObject->getCode());
+		suite->addBefore(parser.parseId(), generatedRunnableBefore);
+	} else if (type == "after") {
+		Runnable* generatedRunnableAfter = new GeneratedRunnable(generatedClassObject->getCode());
+		suite->addAfter(parser.parseId(), generatedRunnableAfter);
+	} else if (type == "verify") {
+		Runnable* generatedRunnableVerify = new GeneratedRunnable(generatedClassObject->getCode());
+		suite->addVerify(parser.parseId(), generatedRunnableVerify);
 	}
 }
 

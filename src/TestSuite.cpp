@@ -35,6 +35,18 @@ TestSuite* TestSuite::findOrCreateSuite(Id id, string name) {
 	return found->second;
 }
 
+void TestSuite::addBefore(Id id, Runnable* runnableBefore) {
+	befores[id] = runnableBefore;
+}
+
+void TestSuite::addAfter(Id id, Runnable* runnableAfter) {
+	afters[id] = runnableAfter;
+}
+
+void TestSuite::addVerify(Id id, Runnable* runnableVerify) {
+	verifies[id] = runnableVerify;
+}
+
 TestSuite* TestSuite::findByName(const std::string& name) {
 	auto found = suitesByName.find(name);
 	return found != suitesByName.end() ? found->second : nullptr;
