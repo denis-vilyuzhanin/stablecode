@@ -30,8 +30,8 @@
 	 	 entry.second->run();
 	 }
 	 for(auto& entry: suite->getSuites()) {
-		 TestSuite* subSuite = suite->findByName(entry.second);
-		 cout<<intend<<entry.second<<endl;
+		 TestSuite* subSuite = entry.second;
+		 cout<<intend<<(subSuite->getName())<<endl;
 		 print(subSuite, intend + "  ");
 	 }
 	 for(auto& entry: suite->getAfters()) {

@@ -12,6 +12,7 @@ namespace stablecode {
 
 class Id {
 public:
+	Id():value(-1){}
 	Id(int value):value(value){}
 
 	int getValue() const {return value;}

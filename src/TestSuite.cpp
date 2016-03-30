@@ -28,11 +28,11 @@ TestSuite* TestSuite::findOrCreateSuite(Id id, string name) {
 	auto found = suitesByName.find(name);
 	if (found == suitesByName.end()) {
 		TestSuite* newSuite = new TestSuite(name);
-		suitesByName[name] = newSuite;
-		suitesByDeclaredOrder[id] = name;
+		suitesByName[name] = id;
+		suites[id] = newSuite;
 		return newSuite;
 	}
-	return found->second;
+	return suites[found->second];
 }
 
 void TestSuite::addBefore(Id id, Runnable* runnableBefore) {
@@ -49,7 +49,7 @@ void TestSuite::addVerify(Id id, Runnable* runnableVerify) {
 
 TestSuite* TestSuite::findByName(const std::string& name) {
 	auto found = suitesByName.find(name);
-	return found != suitesByName.end() ? found->second : nullptr;
+	return found != suitesByName.end() ? suites[found->second] : nullptr;
 }
 
 } /* namespace stablecode */

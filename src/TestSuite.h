@@ -30,7 +30,7 @@ public:
 	TestSuite* findOrCreateSuite(Id id, std::string name);
 	TestSuite* findByName(const std::string& name);
 	const std::string& getName() const {return name;}
-	const std::map<Id, std::string>& getSuites() const {return suitesByDeclaredOrder;}
+	const std::map<Id, TestSuite*>& getSuites() const {return suites;}
 	const std::map<Id, Test*>& getTests() const {return testsByDeclaredOrder;}
 	const std::map<Id, Runnable*> getBefores() const {return befores;}
 	const std::map<Id, Runnable*> getAfters() const {return afters;}
@@ -42,8 +42,8 @@ private:
 	std::map<Id, Runnable*> verifies;
 	std::map<std::string, Test*> testsByName;
 	std::map<Id, Test*> testsByDeclaredOrder;
-	std::map<std::string, TestSuite*> suitesByName;
-	std::map<Id, std::string> suitesByDeclaredOrder;
+	std::map<std::string, Id> suitesByName;
+	std::map<Id, TestSuite*> suites;
 };
 
 } /* namespace stablecode */
