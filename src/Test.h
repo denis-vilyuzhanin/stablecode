@@ -16,9 +16,10 @@
 
 namespace stablecode {
 using namespace statement;
+class TestSuite;
 
 class Test{
-
+friend TestSuite;
 public:
 	Test(const std::string& name);
 	virtual ~Test();
@@ -28,10 +29,14 @@ public:
 	virtual void run();
 
 	const std::string& getName() const {return name;}
+	const TestSuite* getSuite() const {return suite;}
 protected:
 	/*ExpectationStatement& expect(std::string reason);
 	ExpectationStatement& expect(std::string reason, Source source);*/
 private:
+	void setSuite(TestSuite* suite) {this->suite = suite;}
+private:
+	TestSuite* suite = nullptr;
 	std::string name;
 };
 

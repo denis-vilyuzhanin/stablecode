@@ -68,7 +68,7 @@ TestSuite* Discovery::findOrCreateRootSuite(Module* module, const Source& source
 	if (foundRootSuite == suites.end()) {
 		string newTestSuiteName;
 		newTestSuiteName.append(source.getFile()).append("@").append(to_string(module->getId()));
-		TestSuite* newRootSuite = new TestSuite(newTestSuiteName);
+		TestSuite* newRootSuite = new TestSuite(module->getId(), newTestSuiteName);
 		suites[module->getId()] = newRootSuite;
 		return newRootSuite;
 	}

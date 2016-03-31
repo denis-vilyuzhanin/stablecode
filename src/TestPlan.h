@@ -11,6 +11,7 @@
 #include <list>
 
 #include "TestSuite.h"
+#include "Test.h"
 #include "TestRunning.h"
 
 namespace stablecode {
@@ -24,7 +25,12 @@ public:
 	void update(TestSuite* suite);
 
 private:
+	void createTestRunings(TestSuite* suite);
+	void createTestRunning(Test* test);
+
+private:
 	std::list<TestRunning> runnings;
+
 };
 
 } /* namespace stablecode */
