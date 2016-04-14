@@ -9,7 +9,7 @@
 
 #include "Runner.h"
 #include "Discovery.h"
-
+#include "TestPlan.h"
 
 
  using namespace std;
@@ -41,20 +41,22 @@
  }
 
  int main() {
-	 /*for(Registerable* object : Register::getInstance()->getAllRegisteredObjects()) {
-		 cout<<typeid(*object).name()<<endl;
-		 Test* test = dynamic_cast<Test*>(object);
-		 if (test != nullptr) {
-			 test->run();
-		 }
-	 }*/
+
 	 Discovery discovery;
 	 discovery.discover();
 
+	 TestPlan plan;
 	 for(auto& rootSuiteEntry: discovery.getDiscoveredSuites()) {
-		 cout<<rootSuiteEntry.second->getName()<<endl;
-		 print(rootSuiteEntry.second, " ");
+		 /*cout<<rootSuiteEntry.second->getName()<<endl;
+		 print(rootSuiteEntry.second, " ");*/
+		 plan.update(rootSuiteEntry.second);
 	 }
+
+	 for(auto runningEntry: plan.getTestRunnings()) {
+		 Test* test = runningEntry->getTest();
+		 cout<<test->getSuite()->getFullName()<<"."<<test->getName()<<endl;
+	 }
+
 
 	 Runner runnner;
 

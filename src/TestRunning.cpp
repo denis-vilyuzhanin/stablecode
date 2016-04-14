@@ -18,4 +18,14 @@ TestRunning::~TestRunning() {
 	// TODO Auto-generated destructor stub
 }
 
+void TestRunning::addRunnableAfter(Runnable* runnable) {
+	runnableAfter.push_back(runnable);
+}
+
+void TestRunning::addRunnableBefore(Runnable* runnable) {
+	runnableBefore.push_back(runnable);
+}
+
+
 } /* namespace stablecode */
+

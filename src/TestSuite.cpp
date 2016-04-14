@@ -12,11 +12,13 @@ namespace stablecode {
 using namespace std;
 static std::vector<TestSuite*> suites;
 
-TestSuite::TestSuite(Id id, string name):id(id), name(name) {
+TestSuite::TestSuite(Id id, string name):
+		id(id), name(name) {
 }
 
 TestSuite::TestSuite(Id id, std::string name, TestSuite* parent):
-	id(id), name(name), parent(parent) {
+		id(id), name(name), parent(parent) {
+	fullName = parent->fullName + "." + parent->name;
 }
 
 TestSuite::~TestSuite() {

@@ -34,16 +34,19 @@ public:
 	void collectWhatMustBeRun(std::list<Runnable*>& before, std::list<Runnable*>& after, std::list<Runnable*>& verify);
 
 	const std::string& getName() const {return name;}
+	const std::string& getFullName() const {return fullName;}
 	const std::map<Id, TestSuite*>& getSuites() const {return suites;}
 	const std::map<Id, Test*>& getTests() const {return testsByDeclaredOrder;}
 	const std::map<Id, Runnable*> getBefores() const {return befores;}
 	const std::map<Id, Runnable*> getAfters() const {return afters;}
 	const std::map<Id, Runnable*> getVerifies() const {return verifies;}
 	TestSuite* getParent() const {return parent;}
+
 private:
-	TestSuite* parent = nullptr;
 	Id id;
 	std::string name;
+	TestSuite* parent = nullptr;
+	std::string fullName;
 	std::map<Id, Runnable*> befores;
 	std::map<Id, Runnable*> afters;
 	std::map<Id, Runnable*> verifies;

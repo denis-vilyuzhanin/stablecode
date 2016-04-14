@@ -31,7 +31,7 @@ void TestPlan::update(TestSuite* suite) {
 		createTestRunings(current);
 
 		for(auto subSuites : current->getSuites()) {
-			stack.push_front(subSuites.second);
+			stack.push_back(subSuites.second);
 		}
 	}
 }
@@ -45,15 +45,24 @@ void TestPlan::createTestRunings(TestSuite* suite) {
 void TestPlan::createTestRunning(Test* test) {
 	const TestSuite* current = test->getSuite();
 	TestRunning* running = new TestRunning();
-	list<Runnable*> beforeTest;
-	list<Runnable*> afterTest;
-	list<Runnable*> testVerify;
+	running->setTest(test);
+	list<const TestSuite*> stack;
 	while(current != nullptr) {
 		for(auto afterEntry : current->getAfters()) {
 			running->addRunnableAfter(afterEntry.second);
 		}
+		stack.push_back(current);
 		current = current->getParent();
 	}
+	while(!stack.empty()) {
+		current = stack.back();
+		stack.pop_back();
+
+		for(auto beforeEntry: current->getBefores()) {
+			running->addRunnableBefore(beforeEntry.second);
+		}
+	}
+	runnings.push_back(running);
 }
 
 } /* namespace stablecode */

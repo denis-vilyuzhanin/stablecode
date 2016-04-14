@@ -24,12 +24,14 @@ public:
 public:
 	void update(TestSuite* suite);
 
+	const std::list<TestRunning*>& getTestRunnings() const {return runnings;}
+
 private:
 	void createTestRunings(TestSuite* suite);
 	void createTestRunning(Test* test);
 
 private:
-	std::list<TestRunning> runnings;
+	std::list<TestRunning*> runnings;
 
 };
 
