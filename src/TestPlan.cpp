@@ -44,11 +44,14 @@ void TestPlan::createTestRunings(TestSuite* suite) {
 
 void TestPlan::createTestRunning(Test* test) {
 	const TestSuite* current = test->getSuite();
+	TestRunning* running = new TestRunning();
 	list<Runnable*> beforeTest;
 	list<Runnable*> afterTest;
 	list<Runnable*> testVerify;
 	while(current != nullptr) {
-
+		for(auto afterEntry : current->getAfters()) {
+			running->addRunnableAfter(afterEntry.second);
+		}
 		current = current->getParent();
 	}
 }
