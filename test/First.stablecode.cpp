@@ -20,11 +20,11 @@ AFTER {
 }
 
 TEST(firstTest) {
-	cout<<"Test Run 1"<<endl;
+	cout<<"First 1 Test Run 1"<<endl;
 }
 
 TEST(firstTest) {
-	cout<<endl;
+	cout<<"First 2 Test Run 1"<<endl;
 }
 
 AFTER {
@@ -98,7 +98,7 @@ SUITE(mySuite) {
 			cout<<"First Before Test in subSuite 1"<<endl;
 		}
 		TEST(firstTest) {
-			cout<<endl;
+			cout<<"First Test in SubSuite 1"<<endl;
 		}
 
 		VERIFY {

@@ -20,7 +20,7 @@ AFTER {
 }
 
 TEST(firstTest) {
-	cout<<"Test Run 1"<<endl;
+	cout<<"Test Run 2"<<endl;
 }
 
 TEST(firstTest) {
@@ -49,7 +49,7 @@ TEST(secondTest) {
 	EXPECT().value(a).equal(b);
 	EXPECT("checking b flag").value(b).isFalse();
 	EXPECT().value(a).equal(b);
-	expect("test1").value(b).isTrue();
+	expect("test2").value(b).isTrue();
 	cout<<endl;
 
 }
@@ -61,15 +61,15 @@ VERIFY {
 SUITE(mySuite) {
 
 	VERIFY {
-		cout<<"First Verify Test in mySuite 1"<<endl;
+		cout<<"First Verify Test in mySuite 2"<<endl;
 	}
 
 	AFTER {
-		cout<<"First After Test in mySuite 1"<<endl;
+		cout<<"First After Test in mySuite 2"<<endl;
 	}
 
 	BEFORE {
-		cout<<"First Before Test in mySuite 1"<<endl;
+		cout<<"First Before Test in mySuite 2"<<endl;
 	}
 
 	TEST(firstTest) {
@@ -77,11 +77,11 @@ SUITE(mySuite) {
 	}
 
 	VERIFY {
-		cout<<"Second Verify Test in mySuite 1"<<endl;
+		cout<<"Second Verify Test in mySuite 2"<<endl;
 	}
 
 	BEFORE {
-		cout<<"Second Before Test in mySuite 1"<<endl;
+		cout<<"Second Before Test in mySuite 2"<<endl;
 	}
 
 	TEST(secondTest) {
@@ -91,18 +91,18 @@ SUITE(mySuite) {
 	SUITE(subSuite) {
 
 		AFTER {
-			cout<<"First After Test in subSuite 1"<<endl;
+			cout<<"First After Test in subSuite 2"<<endl;
 		}
 
 		BEFORE {
-			cout<<"First Before Test in subSuite 1"<<endl;
+			cout<<"First Before Test in subSuite 2"<<endl;
 		}
 		TEST(firstTest) {
-			cout<<endl;
+			cout<<"First Test in SubSuite 2"<<endl;
 		}
 
 		VERIFY {
-			cout<<"First Verify Test in subSuite 1"<<endl;
+			cout<<"First Verify Test in subSuite 2"<<endl;
 		}
 
 

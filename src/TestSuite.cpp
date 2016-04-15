@@ -13,12 +13,12 @@ using namespace std;
 static std::vector<TestSuite*> suites;
 
 TestSuite::TestSuite(Id id, string name):
-		id(id), name(name) {
+		id(id), name(name), fullName(name) {
 }
 
 TestSuite::TestSuite(Id id, std::string name, TestSuite* parent):
 		id(id), name(name), parent(parent) {
-	fullName = parent->fullName + "." + parent->name;
+	fullName = parent->fullName + "." + name;
 }
 
 TestSuite::~TestSuite() {

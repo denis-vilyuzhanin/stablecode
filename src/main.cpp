@@ -52,9 +52,19 @@
 		 plan.update(rootSuiteEntry.second);
 	 }
 
-	 for(auto runningEntry: plan.getTestRunnings()) {
+	 for(TestRunning* runningEntry: plan.getTestRunnings()) {
 		 Test* test = runningEntry->getTest();
-		 cout<<test->getSuite()->getFullName()<<"."<<test->getName()<<endl;
+		 cout<<test->getSuite()->getFullName()<<"->"<<test->getName()<<endl;
+
+		 for(Runnable* before : runningEntry->getRunnableBefore()) {
+			 before->run();
+		 }
+
+		 test->run();
+
+		 for(Runnable* after : runningEntry->getRunnableAfter()) {
+		 	 after->run();
+		 }
 	 }
 
 
