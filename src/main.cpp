@@ -54,7 +54,10 @@
 
 	 for(TestRunning* runningEntry: plan.getTestRunnings()) {
 		 Test* test = runningEntry->getTest();
-		 cout<<test->getSuite()->getFullName()<<"->"<<test->getName()<<endl;
+		 for(auto path : test->getSuite()->getPath()) {
+			 cout<<path<<"->";
+		 }
+		 cout<<test->getName()<<endl;
 
 		 for(Runnable* before : runningEntry->getRunnableBefore()) {
 			 before->run();
