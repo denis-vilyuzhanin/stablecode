@@ -11,21 +11,32 @@
 
 
 namespace stablecode {
+using namespace std;
 
-Runner::Runner() {
-	// TODO Auto-generated constructor stub
-
+Runner::Runner(Report* report, const TestPlan* testPlan): report(report), testPlan(testPlan) {
 }
 
 Runner::~Runner() {
-	// TODO Auto-generated destructor stub
 }
 
-void Runner::discovery() {
+void Runner::run() {
+	for(TestRunning* runningEntry: testPlan->getTestRunnings()) {
+		Test* test = runningEntry->getTest();
+		for(auto path : test->getSuite()->getPath()) {
+			cout<<path<<"->";
+		}
+		cout<<test->getName()<<endl;
 
-}
+		for(Runnable* before : runningEntry->getRunnableBefore()) {
+			 before->run();
+		}
 
-void Runner::runAll() {
+		test->run();
+
+		for(Runnable* after : runningEntry->getRunnableAfter()) {
+			after->run();
+		}
+	}
 }
 
 } /* namespace stablecode */

@@ -8,20 +8,23 @@
 #ifndef SRC_RUNNER_H_
 #define SRC_RUNNER_H_
 
-#include "Test.h"
-
 #include <list>
+
+#include "Test.h"
+#include "TestPlan.h"
+#include "Report.h"
 
 namespace stablecode {
 
 class Runner {
 public:
-	Runner();
+	Runner(Report* report, const TestPlan* testPlan);
 	virtual ~Runner();
-	void discovery();
-	void runAll();
+public:
+	void run();
 private:
-	std::list<Test*> tests;
+	Report* report;
+	const TestPlan* testPlan;
 };
 
 } /* namespace stablecode */

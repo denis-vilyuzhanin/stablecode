@@ -45,14 +45,14 @@
 	 Discovery discovery;
 	 discovery.discover();
 
-	 TestPlan plan;
+	 TestPlan testPlan;
 	 for(auto& rootSuiteEntry: discovery.getDiscoveredSuites()) {
 		 /*cout<<rootSuiteEntry.second->getName()<<endl;
 		 print(rootSuiteEntry.second, " ");*/
-		 plan.update(rootSuiteEntry.second);
+		 testPlan.update(rootSuiteEntry.second);
 	 }
 
-	 for(TestRunning* runningEntry: plan.getTestRunnings()) {
+	 /*for(TestRunning* runningEntry: plan.getTestRunnings()) {
 		 Test* test = runningEntry->getTest();
 		 for(auto path : test->getSuite()->getPath()) {
 			 cout<<path<<"->";
@@ -68,11 +68,12 @@
 		 for(Runnable* after : runningEntry->getRunnableAfter()) {
 		 	 after->run();
 		 }
-	 }
+	 }*/
 
+	 Report report;
 
-	 Runner runnner;
-
+	 Runner runnner(&report, &testPlan);
+	 runnner.run();
 	 //runnner.runAll();
 
 	 return 0;
