@@ -22,10 +22,7 @@ Runner::~Runner() {
 void Runner::run() {
 	for(TestRunning* runningEntry: testPlan->getTestRunnings()) {
 		Test* test = runningEntry->getTest();
-		for(auto path : test->getSuite()->getPath()) {
-			cout<<path<<"->";
-		}
-		cout<<test->getName()<<endl;
+		report->beginTest(test);
 
 		for(Runnable* before : runningEntry->getRunnableBefore()) {
 			 before->run();

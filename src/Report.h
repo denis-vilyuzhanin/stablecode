@@ -8,12 +8,16 @@
 #ifndef SRC_REPORT_H_
 #define SRC_REPORT_H_
 
+#include "Test.h"
+
 namespace stablecode {
 
 class Report {
 public:
 	Report();
 	virtual ~Report();
+public:
+	virtual void beginTest(const Test* test);
 };
 
 } /* namespace stablecode */
