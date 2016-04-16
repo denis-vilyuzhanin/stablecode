@@ -55,11 +55,14 @@ namespace _STABLECODE_UNIQUE_ID_(suite, suiteName)
 //======================================================================
 // Generated class
 #define _STABLECODE_GENERATED_CLASS_($name, $class, $code, $object) \
+	static int _STABLECODE_UNIQUE_ID_(lineLock, var) = 0;\
 	template<int N> \
 	class $class: public stablecode::GeneratedClass { \
 	public: \
 		$class(std::string declaredName, stablecode::Module* module, stablecode::GeneratedClass::Code code, stablecode::Source source): \
-		GeneratedClass(declaredName, module, code, source){} \
+		GeneratedClass(declaredName, module, code, source){ \
+			_STABLECODE_UNIQUE_ID_(lineLock, var)++; \
+		} \
 	}; \
 	static void $code(); \
 	static $class<__LINE__> $object(""#$name, &__STABLECODE_THIS_MODULE__, $code, stablecode::Source(__FILE__, __LINE__)); \
