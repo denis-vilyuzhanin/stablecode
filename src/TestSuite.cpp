@@ -32,14 +32,14 @@ void TestSuite::addTest(Id id, const std::string& name, Test* test) {
 }
 
 TestSuite* TestSuite::findOrCreateSuite(Id id, string name) {
-	auto found = suitesByName.find(name);
-	if (found == suitesByName.end()) {
+	auto found = suites.find(id);
+	if (found == suites.end()) {
 		TestSuite* newSuite = new TestSuite(id, name, this);
 		suitesByName[name] = id;
 		suites[id] = newSuite;
 		return newSuite;
 	}
-	return suites[found->second];
+	return found->second;
 }
 
 void TestSuite::addBefore(Id id, Runnable* runnableBefore) {

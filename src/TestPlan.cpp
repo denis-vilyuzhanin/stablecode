@@ -30,9 +30,15 @@ void TestPlan::update(TestSuite* suite) {
 
 		createTestRunings(current);
 
-		for(auto subSuites : current->getSuites()) {
-			stack.push_back(subSuites.second);
+
+		for(auto subSuitesIter = current->getSuites().rbegin();
+			subSuitesIter != current->getSuites().rend();
+			subSuitesIter++) {
+			stack.push_front(subSuitesIter->second);
 		}
+		/*for(auto subSuites : current->getSuites()) {
+			stack.push_back(subSuites.second);
+		}*/
 	}
 }
 

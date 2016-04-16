@@ -111,6 +111,6 @@ SUITE(mySuite) {
 
 SUITE(mySuite) {
 	TEST(firstTest) {
-		cout<<endl;
+		cout<<"The last test 2"<<endl;
 	}
 }
