@@ -33,6 +33,7 @@ void Runner::run() {
 		for(Runnable* after : runningEntry->getRunnableAfter()) {
 			after->run();
 		}
+		report->endTest(test);
 	}
 }
 

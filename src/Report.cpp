@@ -23,12 +23,26 @@ Report::~Report() {
 }
 
 void Report::beginTest(const Test* test) {
-	for(auto path : test->getSuite()->getPath()) {
-		cout<<path<<"=>";
+	const TestSuite* suite = test->getSuite();
+	if (currentSuite != suite) {
+		cout<<endl;
+		for(auto path : test->getSuite()->getPath()) {
+			cout<<path<<"=>";
+		}
+		currentSuite = suite;
 	}
-	cout<<test->getName()<<endl;
+	cout<<endl<<"[ TEST ]"<<test->getName()<<endl;
 }
 
+void Report::endTest(const Test* test) {
+	cout<<endl<<"[  OK  ]"<<test->getName();
+}
+
+void Report::printSuite(const TestSuite* suite) {
+}
+
+void Report::printTest(const Test* test) {
+}
 
 } /* namespace stablecode */
 

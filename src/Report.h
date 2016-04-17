@@ -9,6 +9,7 @@
 #define SRC_REPORT_H_
 
 #include "Test.h"
+#include "TestSuite.h"
 
 namespace stablecode {
 
@@ -18,6 +19,12 @@ public:
 	virtual ~Report();
 public:
 	virtual void beginTest(const Test* test);
+	virtual void endTest(const Test* test);
+private:
+	void printSuite(const TestSuite* suite);
+	void printTest(const Test* test);
+private:
+	const TestSuite* currentSuite = nullptr;
 };
 
 } /* namespace stablecode */
