@@ -13,7 +13,7 @@
 namespace stablecode {
 using namespace std;
 
-static thread_local Runner* currentRunner = nullptr;
+static Runner* currentRunner = nullptr;
 
 Runner::Runner(Report* report, const TestPlan* testPlan): report(report), testPlan(testPlan) {
 }

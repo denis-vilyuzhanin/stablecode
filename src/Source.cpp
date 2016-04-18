@@ -28,7 +28,7 @@ Source::Source():lineNumber(-1) {
 
 string Source::fileName() {
 	unsigned int index = file.find_last_of("/");
-	if (index == string::npos) {
+	if (index == string::npos || index < 0 || index >= file.length()) {
 		index = file.find_last_of("\\");
 	}
 	return index == string::npos ? file : file.substr(index + 1);
