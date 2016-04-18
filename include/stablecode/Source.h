@@ -10,7 +10,7 @@
 
 #include "configuration.h"
 
-#include<string>
+#include <string>
 
 namespace stablecode {
 
@@ -21,6 +21,8 @@ public:
 	Source(const Source& other);
 	Source(const Source&& other) NOEXCEPT;
 public:
+	std::string fileName();
+	bool isUndefined() const;
 	const std::string& getFile() const {return file;}
 	int getLineNumber() const {return lineNumber;}
 private:

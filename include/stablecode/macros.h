@@ -86,11 +86,19 @@ void __$startup_type$__LINE__::run()
 
 
 //======================================================================
+// Logging
+#define INFO($logExpression) STABLECODE_INFO($logExpression)
+#define STABLECODE_INFO($logExpression) \
+	log(_STABLECODE_SOURCE__).info([&](std::ostream& logOut){logOut<<$logExpression;})
+
+//======================================================================
 //ID macroses
 
 #define _STABLECODE_UNIQUE_ID_(type, name) _STABLECODE_ID_(type, name, __LINE__)
 #define _STABLECODE_ID_(type, name, id) _STABLECODE_ID_CONCAT_(stablecode, type, name, id)
 #define _STABLECODE_ID_CONCAT_(prefix, type, name, id) __$##prefix##$##type##$##name##$##id##$__
+
+#define _STABLECODE_SOURCE__ stablecode::Source(__FILE__, __LINE__)
 
 #define MERGE_(a,b)  a##b
 #define LABEL_(prefix, id) MERGE_(prefix, id)

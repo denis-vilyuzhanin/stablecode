@@ -8,10 +8,14 @@
 #ifndef INCLUDE_STABLECODE_STATEMENT_H_
 #define INCLUDE_STABLECODE_STATEMENT_H_
 
+#include <string>
+#include <iostream>
+#include <functional>
+
 #include "Value.h"
 #include "TValue.h"
 #include "Source.h"
-#include <string>
+
 
 namespace stablecode {
 namespace statement {
@@ -22,9 +26,13 @@ struct ExpectationStatement;
 struct ValueStatement;
 struct BooleanValueStatement;
 struct StringValueStatement;
+struct LogStatement;
 
 ExpectationStatement& expect(std::string reason);
 ExpectationStatement& expect(std::string reason, Source source);
+
+LogStatement& log();
+LogStatement& log(Source source);
 
 struct ExpectationStatement {
 
@@ -87,6 +95,11 @@ protected:
 
 };
 
+
+struct LogStatement {
+	typedef std::function<void(std::ostream&)> Expression;
+	virtual void info(Expression logExpression) = 0;
+};
 
 } /* namespace statement */
 } /* namespace stablecode */

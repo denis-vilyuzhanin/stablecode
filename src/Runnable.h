@@ -12,9 +12,12 @@ namespace stablecode {
 
 class Runnable {
 public:
+	~Runnable(){};
+public:
 	virtual void run() = 0;
 };
 
 } /* namespace stablecode */
+
 
 #endif /* SRC_RUNNABLE_H_ */

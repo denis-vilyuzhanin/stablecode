@@ -6,6 +6,8 @@
  */
 
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 
 #include "TestSuite.h"
 #include "Report.h"
@@ -31,14 +33,38 @@ void Report::beginTest(const Test* test) {
 		}
 		currentSuite = suite;
 	}
-	cout<<endl<<"[ TEST ]"<<test->getName()<<endl;
+	message(TEST_BEGIN, test->getName());
 }
 
-void Report::endTest(const Test* test) {
-	cout<<endl<<"[  OK  ]"<<test->getName();
+void Report::testPassed(const Test* test) {
+	message(TEST_PASSED, test->getName());
 }
 
 void Report::printSuite(const TestSuite* suite) {
+}
+void Report::message(const MessageType type, const std::string& text) {
+	message(type, text, Source());
+}
+
+void Report::message(const MessageType type, const std::string& text, Source source) {
+	cout<<endl;
+	switch(type) {
+	case MessageType::INFO:
+		cout<<"[ INFO ]";
+		break;
+	case TEST_BEGIN:
+		cout<<"[ TEST ]";
+		break;
+	case TEST_PASSED:
+		cout<<"[  OK  ]";
+		break;
+	default:
+		cout<<"[      ]";
+	}
+	cout<<" "<<text;
+	if (!source.isUndefined()) {
+		cout<<" <at "<<source.fileName()<<":"<<source.getLineNumber()<<">";
+	}
 }
 
 void Report::printTest(const Test* test) {

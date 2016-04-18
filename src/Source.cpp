@@ -9,6 +9,7 @@
 #include <utility>
 
 namespace stablecode {
+using namespace std;
 
 Source::Source(const std::string& file, int lineNumber):
 	file(file), lineNumber(lineNumber){
@@ -25,6 +26,18 @@ Source::Source(const Source&& other) NOEXCEPT:
 Source::Source():lineNumber(-1) {
 }
 
+string Source::fileName() {
+	unsigned int index = file.find_last_of("/");
+	if (index == string::npos) {
+		index = file.find_last_of("\\");
+	}
+	return index == string::npos ? file : file.substr(index + 1);
 }
-/* namespace stablecode */
+
+bool Source::isUndefined() const {
+	return lineNumber < 0;
+}
+
+
+} /* namespace stablecode */
 
