@@ -21,7 +21,7 @@ public:
 	GeneratedTest(const std::string& name, GeneratedClass::Code code);
 	virtual ~GeneratedTest();
 public:
-	void run();
+	void run(statement::Log& log);
 private:
 	GeneratedClass::Code code;
 };

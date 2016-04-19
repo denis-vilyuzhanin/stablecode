@@ -24,21 +24,5 @@ ExpectationStatement& expect(std::string reason, Source source) {
 	return *expectation;
 }
 
-LogStatement& log() {
-	LogStatement* logStatement = nullptr;
-	Runner::executeAction([&](Runner* runner){
-		logStatement = new Logger(runner->getReport());
-	});
-	return *logStatement;
-}
-
-LogStatement& log(Source source) {
-	LogStatement* logStatement = nullptr;
-	Runner::executeAction([&](Runner* runner){
-		logStatement = new Logger(runner->getReport(), source);
-	});
-	return *logStatement;
-}
-
 } /* namespace statement */
 } /* namespace stablecode */

@@ -18,8 +18,8 @@ GeneratedTest::~GeneratedTest() {
 
 }
 
-void GeneratedTest::run() {
-	code();
+void GeneratedTest::run(statement::Log& log) {
+	code(log);
 }
 
 } /* namespace stablecode */

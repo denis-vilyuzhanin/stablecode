@@ -8,13 +8,15 @@
 #ifndef SRC_RUNNABLE_H_
 #define SRC_RUNNABLE_H_
 
+#include "stablecode/statement.h"
+
 namespace stablecode {
 
 class Runnable {
 public:
 	~Runnable(){};
 public:
-	virtual void run() = 0;
+	virtual void run(statement::Log& log) = 0;
 };
 
 } /* namespace stablecode */

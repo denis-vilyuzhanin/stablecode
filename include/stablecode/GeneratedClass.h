@@ -9,6 +9,7 @@
 #define INCLUDE_STABLECODE_GENERATEDCLASS_H_
 
 #include <stablecode/Discoverable.h>
+#include <stablecode/statement.h>
 #include <string>
 #include <list>
 
@@ -19,7 +20,7 @@ namespace stablecode {
 
 class GeneratedClass: public Discoverable {
 public:
-	typedef void(*Code)();
+	typedef void(*Code)(statement::Log&);
 public:
 	virtual ~GeneratedClass();
 public:

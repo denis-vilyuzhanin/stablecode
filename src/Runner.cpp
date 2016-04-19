@@ -31,13 +31,13 @@ void Runner::run() {
 		report->beginTest(test);
 
 		for(Runnable* before : runningEntry->getRunnableBefore()) {
-			 before->run();
+			 before->run(controller.toLog());
 		}
 
-		test->run();
+		test->run(controller.toLog());
 
 		for(Runnable* after : runningEntry->getRunnableAfter()) {
-			after->run();
+			after->run(controller.toLog());
 		}
 		report->testPassed(test);
 	}

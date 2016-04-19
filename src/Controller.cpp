@@ -10,7 +10,8 @@
 
 namespace stablecode {
 
-Controller::Controller(Runner* runner, TestRunning* running): runner(runner),running(running) {
+Controller::Controller(Runner* runner, TestRunning* running):
+		runner(runner), running(running), log(this) {
 }
 
 Controller::~Controller() {

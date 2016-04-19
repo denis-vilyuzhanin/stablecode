@@ -31,9 +31,6 @@ struct LogStatement;
 ExpectationStatement& expect(std::string reason);
 ExpectationStatement& expect(std::string reason, Source source);
 
-LogStatement& log();
-LogStatement& log(Source source);
-
 struct Log {
 	virtual LogStatement& operator()() = 0;
 	virtual LogStatement& operator()(Source source) = 0;

@@ -17,7 +17,7 @@ m * Controller.h
 namespace stablecode {
 
 class Controller {
-private:
+public:
 	class Delegate {
 	protected:
 		Delegate(Controller* controller);
@@ -38,9 +38,12 @@ public:
 public:
 	statement::LogStatement& newLog();
 	statement::LogStatement& newLog(Source source);
+
+	statement::Log& toLog() {return log;}
 private:
 	Runner* runner;
 	TestRunning* running;
+	LogDelegate log;
 };
 
 } /* namespace stablecode */

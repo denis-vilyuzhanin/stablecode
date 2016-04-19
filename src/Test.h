@@ -14,19 +14,18 @@
 #include "stablecode/Source.h"
 #include "stablecode/statement.h"
 
+#include "Runnable.h"
+
 namespace stablecode {
 using namespace statement;
 class TestSuite;
 
-class Test{
+class Test: public Runnable {
 friend TestSuite;
 public:
 	Test(const std::string& name);
 	virtual ~Test();
-protected:
-
 public:
-	virtual void run();
 
 	const std::string& getName() const {return name;}
 	const TestSuite* getSuite() const {return suite;}
