@@ -34,6 +34,11 @@ ExpectationStatement& expect(std::string reason, Source source);
 LogStatement& log();
 LogStatement& log(Source source);
 
+struct Log {
+	virtual LogStatement& operator()() = 0;
+	virtual LogStatement& operator()(Source source) = 0;
+};
+
 struct ExpectationStatement {
 
 	BooleanValueStatement& value(const bool first) {

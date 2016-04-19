@@ -7,8 +7,10 @@
 
 #include <iostream>
 
-#include "Runner.h"
+#include "stablecode/statement.h"
 
+#include "Runner.h"
+#include "Controller.h"
 
 namespace stablecode {
 using namespace std;
@@ -24,6 +26,7 @@ Runner::~Runner() {
 void Runner::run() {
 	currentRunner = this;
 	for(TestRunning* runningEntry: testPlan->getTestRunnings()) {
+		Controller controller(this, runningEntry);
 		Test* test = runningEntry->getTest();
 		report->beginTest(test);
 
