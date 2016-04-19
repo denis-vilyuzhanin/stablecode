@@ -7,11 +7,12 @@
 
 #include "Controller.h"
 #include "Logger.h"
+#include "Expectation.h"
 
 namespace stablecode {
 
 Controller::Controller(Runner* runner, TestRunning* running):
-		runner(runner), running(running), log(this) {
+		runner(runner), running(running), log(this), expect(this) {
 }
 
 Controller::~Controller() {
@@ -28,6 +29,17 @@ LogStatement& Controller::newLog(Source source) {
 	return *log;
 }
 
+statement::ExpectationStatement& Controller::newExpectation(std::string reason) {
+	ExpectationStatement* expectation = new Expectation(reason);
+	return *expectation;
+}
+
+statement::ExpectationStatement& Controller::newExpectation(std::string reason, Source source) {
+	ExpectationStatement* expectation = new Expectation(reason, source);
+	return *expectation;
+}
+
+
 Controller::Delegate::Delegate(Controller* controller): controller(controller) {
 }
 
@@ -43,4 +55,17 @@ LogStatement& stablecode::Controller::LogDelegate::operator ()(Source source) {
 }
 
 
+Controller::ExpectDelegate::ExpectDelegate(Controller* controller): Delegate(controller) {
+}
+
+ExpectationStatement& Controller::ExpectDelegate::operator ()(std::string reason) {
+	return controller->newExpectation(reason);
+}
+
+ExpectationStatement& Controller::ExpectDelegate::operator ()(std::string reason, Source source) {
+	return controller->newExpectation(reason, source);
+}
+
+
 } /* namespace stablecode */
+

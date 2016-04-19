@@ -32,18 +32,30 @@ public:
 		statement::LogStatement& operator()();
 		statement::LogStatement& operator()(Source source);
 	};
+
+	class ExpectDelegate: public statement::Expect, private Delegate {
+	public:
+		ExpectDelegate(Controller* controller);
+	public:
+		virtual ExpectationStatement& operator()(std::string reason);
+		virtual ExpectationStatement& operator()(std::string reason, Source source);
+	};
 public:
 	Controller(Runner* runner, TestRunning* running);
 	virtual ~Controller();
 public:
 	statement::LogStatement& newLog();
 	statement::LogStatement& newLog(Source source);
+	statement::ExpectationStatement& newExpectation(std::string reason);
+	statement::ExpectationStatement& newExpectation(std::string reason, Source source);
 
 	statement::Log& toLog() {return log;}
+	statement::Expect& toExpect() {return expect;}
 private:
 	Runner* runner;
 	TestRunning* running;
 	LogDelegate log;
+	ExpectDelegate expect;
 };
 
 } /* namespace stablecode */

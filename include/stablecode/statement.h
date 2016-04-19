@@ -28,8 +28,11 @@ struct BooleanValueStatement;
 struct StringValueStatement;
 struct LogStatement;
 
-ExpectationStatement& expect(std::string reason);
-ExpectationStatement& expect(std::string reason, Source source);
+
+struct Expect {
+	virtual ExpectationStatement& operator()(std::string reason) = 0;
+	virtual ExpectationStatement& operator()(std::string reason, Source source) = 0;
+};
 
 struct Log {
 	virtual LogStatement& operator()() = 0;

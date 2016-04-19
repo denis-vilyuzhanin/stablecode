@@ -64,9 +64,9 @@ namespace _STABLECODE_UNIQUE_ID_(suite, suiteName)
 			_STABLECODE_UNIQUE_ID_(lineLock, var)++; \
 		} \
 	}; \
-	static void $code(stablecode::statement::Log&); \
+	static void $code(stablecode::statement::Log&,stablecode::statement::Expect&); \
 	static $class<__LINE__> $object(""#$name, &__STABLECODE_THIS_MODULE__, $code, stablecode::Source(__FILE__, __LINE__)); \
-	static void $code(stablecode::statement::Log& log)
+	static void $code(stablecode::statement::Log& log,stablecode::statement::Expect& expect)
 
 //======================================================================
 //STARTUP macros

@@ -17,8 +17,8 @@ GeneratedRunnable::~GeneratedRunnable() {
 
 }
 
-void GeneratedRunnable::run(statement::Log& log) {
-	code(log);
+void GeneratedRunnable::run(statement::Log& log, statement::Expect& expect) {
+	code(log, expect);
 }
 
 } /* namespace stablecode */
