@@ -19,12 +19,7 @@
  int main() {
 
 	 Discovery discovery;
-	 discovery.discover();
-
-	 TestPlan testPlan;
-	 for(auto& rootSuiteEntry: discovery.getDiscoveredSuites()) {
-		 testPlan.update(rootSuiteEntry.second);
-	 }
+	 TestPlan testPlan = discovery.discoverTestPlan();
 
 	 Report report;
 

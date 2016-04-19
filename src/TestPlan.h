@@ -10,6 +10,8 @@
 
 #include <list>
 
+#include "stablecode/configuration.h"
+
 #include "TestSuite.h"
 #include "Test.h"
 #include "TestRunning.h"
@@ -19,6 +21,8 @@ namespace stablecode {
 class TestPlan {
 public:
 	TestPlan();
+	TestPlan(const TestPlan&);
+	TestPlan(const TestPlan&&) NOEXCEPT;
 	virtual ~TestPlan();
 
 public:

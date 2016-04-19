@@ -6,6 +6,7 @@
  */
 
 #include <list>
+#include <utility>
 
 #include "TestPlan.h"
 #include "Runnable.h"
@@ -16,6 +17,11 @@ using namespace std;
 TestPlan::TestPlan() {
 
 }
+
+TestPlan::TestPlan(const TestPlan& other): runnings(other.runnings){}
+
+TestPlan::TestPlan(const TestPlan&& other) NOEXCEPT: runnings(move(other.runnings)) {}
+
 
 TestPlan::~TestPlan() {
 
@@ -72,3 +78,4 @@ void TestPlan::createTestRunning(Test* test) {
 }
 
 } /* namespace stablecode */
+

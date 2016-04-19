@@ -75,6 +75,16 @@ TestSuite* Discovery::findOrCreateRootSuite(Module* module, const Source& source
 	return foundRootSuite->second;
 }
 
+
+TestPlan Discovery::discoverTestPlan() {
+	discover();
+	TestPlan testPlan;
+	for(auto& rootSuiteEntry: suites) {
+		 testPlan.update(rootSuiteEntry.second);
+	}
+	return testPlan;
+}
+
 void Discovery::toBeDiscovered(Discoverable* object) {
 	if (toBeDiscoveredObjects == nullptr) {
 		toBeDiscoveredObjects = new list<Discoverable*>();
@@ -85,3 +95,4 @@ void Discovery::toBeDiscovered(Discoverable* object) {
 
 
 } /* namespace tablecode */
+

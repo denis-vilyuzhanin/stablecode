@@ -16,8 +16,9 @@
 #include "stablecode/Discoverable.h"
 #include "stablecode/GeneratedClass.h"
 #include "stablecode/Module.h"
-#include "TestSuite.h"
 
+#include "TestSuite.h"
+#include "TestPlan.h"
 namespace stablecode {
 
 
@@ -28,6 +29,7 @@ public:
 	virtual ~Discovery();
 public:
 	void discover();
+	TestPlan discoverTestPlan();
 	const std::map<Module::Id, TestSuite*>& getDiscoveredSuites()const {return suites;}
 private:
 	void discoverGeneratedClass(GeneratedClass*);
