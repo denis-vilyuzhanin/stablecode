@@ -12,17 +12,17 @@
 namespace stablecode {
 using namespace std;
 
-Logger::Logger(Report* report): report(report) {
+Log::Log(Report* report): report(report) {
 }
 
-Logger::Logger(Report* report, Source source): report(report), source(source) {
+Log::Log(Report* report, Source source): report(report), source(source) {
 }
 
-Logger::~Logger() {
+Log::~Log() {
 
 }
 
-void Logger::info(LogStatement::Expression logExpression) {
+void Log::info(LogStatement::Expression logExpression) {
 	stringstream logStream;
 	logExpression(logStream);
 	report->message(Report::INFO, logStream.str(), source);

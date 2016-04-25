@@ -16,7 +16,7 @@ class Runnable {
 public:
 	~Runnable(){};
 public:
-	virtual void run(statement::Log& log, statement::Expect& expect) = 0;
+	virtual void run(statement::LoggingStatement& log, statement::ExpectingStatement& expect) = 0;
 };
 
 } /* namespace stablecode */

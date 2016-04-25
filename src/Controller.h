@@ -25,7 +25,7 @@ public:
 		Controller* controller;
 	};
 
-	class LogDelegate: public statement::Log, private Delegate {
+	class LogDelegate: public statement::LoggingStatement, private Delegate {
 	public:
 		LogDelegate(Controller* controller);
 	public:
@@ -33,7 +33,7 @@ public:
 		statement::LogStatement& operator()(Source source);
 	};
 
-	class ExpectDelegate: public statement::Expect, private Delegate {
+	class ExpectDelegate: public statement::ExpectingStatement, private Delegate {
 	public:
 		ExpectDelegate(Controller* controller);
 	public:
@@ -49,8 +49,8 @@ public:
 	statement::ExpectationStatement& newExpectation(std::string reason);
 	statement::ExpectationStatement& newExpectation(std::string reason, Source source);
 
-	statement::Log& toLog() {return log;}
-	statement::Expect& toExpect() {return expect;}
+	statement::LoggingStatement& toLog() {return log;}
+	statement::ExpectingStatement& toExpect() {return expect;}
 private:
 	Runner* runner;
 	TestRunning* running;

@@ -17,7 +17,7 @@ GeneratedRunnable::~GeneratedRunnable() {
 
 }
 
-void GeneratedRunnable::run(statement::Log& log, statement::Expect& expect) {
+void GeneratedRunnable::run(statement::LoggingStatement& log, statement::ExpectingStatement& expect) {
 	code(log, expect);
 }
 

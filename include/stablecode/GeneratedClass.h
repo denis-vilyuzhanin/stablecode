@@ -20,7 +20,7 @@ namespace stablecode {
 
 class GeneratedClass: public Discoverable {
 public:
-	typedef void(*Code)(statement::Log&,statement::Expect&);
+	typedef void(*Code)(statement::LoggingStatement&,statement::ExpectingStatement&);
 public:
 	virtual ~GeneratedClass();
 public:

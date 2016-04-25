@@ -29,12 +29,12 @@ struct StringValueStatement;
 struct LogStatement;
 
 
-struct Expect {
+struct ExpectingStatement {
 	virtual ExpectationStatement& operator()(std::string reason) = 0;
 	virtual ExpectationStatement& operator()(std::string reason, Source source) = 0;
 };
 
-struct Log {
+struct LoggingStatement {
 	virtual LogStatement& operator()() = 0;
 	virtual LogStatement& operator()(Source source) = 0;
 };

@@ -20,12 +20,12 @@ Controller::~Controller() {
 }
 
 LogStatement& Controller::newLog() {
-	LogStatement* log = new Logger(runner->getReport());
+	LogStatement* log = new Log(runner->getReport());
 	return *log;
 }
 
 LogStatement& Controller::newLog(Source source) {
-	LogStatement* log = new Logger(runner->getReport(), source);
+	LogStatement* log = new Log(runner->getReport(), source);
 	return *log;
 }
 

@@ -15,11 +15,11 @@
 
 namespace stablecode {
 
-class Logger: public statement::LogStatement {
+class Log: public statement::LogStatement {
 public:
-	Logger(Report* report);
-	Logger(Report* report, Source source);
-	virtual ~Logger();
+	Log(Report* report);
+	Log(Report* report, Source source);
+	virtual ~Log();
 public:
 	void info(LogStatement::Expression logExpression);
 private:

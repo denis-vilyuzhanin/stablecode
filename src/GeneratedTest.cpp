@@ -18,7 +18,7 @@ GeneratedTest::~GeneratedTest() {
 
 }
 
-void GeneratedTest::run(statement::Log& log, statement::Expect& expect) {
+void GeneratedTest::run(statement::LoggingStatement& log, statement::ExpectingStatement& expect) {
 	code(log, expect);
 }
 

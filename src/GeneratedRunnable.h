@@ -19,7 +19,7 @@ public:
 	GeneratedRunnable(GeneratedClass::Code code);
 	virtual ~GeneratedRunnable();
 public:
-	void run(statement::Log& log, statement::Expect& expect);
+	void run(statement::LoggingStatement& log, statement::ExpectingStatement& expect);
 private:
 	GeneratedClass::Code code;
 };
