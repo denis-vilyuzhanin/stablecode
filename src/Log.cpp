@@ -7,7 +7,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "Logger.h"
+#include "Log.h"
 
 namespace stablecode {
 using namespace std;

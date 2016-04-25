@@ -10,7 +10,7 @@ m * Controller.h
 
 #include "stablecode/statement.h"
 
-#include "Logger.h"
+#include "Log.h"
 #include "Runner.h"
 #include "TestRunning.h"
 

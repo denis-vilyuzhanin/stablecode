@@ -6,8 +6,8 @@
  */
 
 #include "Controller.h"
-#include "Logger.h"
 #include "Expectation.h"
+#include "Log.h"
 
 namespace stablecode {
 
