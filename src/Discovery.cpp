@@ -30,6 +30,9 @@ Discovery::~Discovery() {
 }
 
 void Discovery::discover() {
+	if (toBeDiscoveredObjects == nullptr) {
+		return;
+	}
 	for(Discoverable* object: *toBeDiscoveredObjects) {
 		GeneratedClass* generatedClass = dynamic_cast<GeneratedClass*>(object);
 		if (generatedClass != nullptr) {
