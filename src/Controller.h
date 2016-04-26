@@ -8,9 +8,12 @@ m * Controller.h
 #ifndef SRC_CONTROLLER_H_
 #define SRC_CONTROLLER_H_
 
+#include <list>
+
 #include "stablecode/statement.h"
 
 #include "Log.h"
+#include "Expectation.h"
 #include "Runner.h"
 #include "TestRunning.h"
 
@@ -56,6 +59,8 @@ private:
 	TestRunning* running;
 	LogDelegate log;
 	ExpectDelegate expect;
+	std::list<Log*> logs;
+	std::list<Expectation*> expectations;
 };
 
 } /* namespace stablecode */

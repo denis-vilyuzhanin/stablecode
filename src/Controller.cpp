@@ -16,26 +16,36 @@ Controller::Controller(Runner* runner, TestRunning* running):
 }
 
 Controller::~Controller() {
+	for(auto log : logs) {
+		delete log;
+	}
 
+	for(auto expectation : expectations) {
+		delete expectation;
+	}
 }
 
 LogStatement& Controller::newLog() {
-	LogStatement* log = new Log(runner->getReport());
+	Log* log = new Log(runner->getReport());
+	logs.push_back(log);
 	return *log;
 }
 
 LogStatement& Controller::newLog(Source source) {
-	LogStatement* log = new Log(runner->getReport(), source);
+	Log* log = new Log(runner->getReport(), source);
+	logs.push_back(log);
 	return *log;
 }
 
 statement::ExpectationStatement& Controller::newExpectation(std::string reason) {
-	ExpectationStatement* expectation = new Expectation(reason);
+	Expectation* expectation = new Expectation(reason);
+	expectations.push_back(expectation);
 	return *expectation;
 }
 
 statement::ExpectationStatement& Controller::newExpectation(std::string reason, Source source) {
-	ExpectationStatement* expectation = new Expectation(reason, source);
+	Expectation* expectation = new Expectation(reason, source);
+	expectations.push_back(expectation);
 	return *expectation;
 }
 
