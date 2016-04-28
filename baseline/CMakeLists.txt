@@ -7,3 +7,4 @@ macro(__stablecode__ module)
 endmacro(__stablecode__)	
 
 add_subdirectory(passed)
+add_subdirectory(failed)

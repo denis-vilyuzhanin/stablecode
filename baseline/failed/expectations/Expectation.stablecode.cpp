@@ -6,8 +6,8 @@
  */
 #include "stablecode.h"
 
-TEST(expectedTrue) {
-	bool actual = true;
+TEST(expectedTrue_butFalse) {
+	bool actual = false;
 	EXPECT().value(actual).isTrue();
 }
 
