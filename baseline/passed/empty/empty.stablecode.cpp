@@ -6,9 +6,6 @@
  */
 #include "stablecode.h"
 
-/*TEST(expectedTrue) {
-
-}*/
 
 
 
