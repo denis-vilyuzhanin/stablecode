@@ -12,6 +12,8 @@
 #include "TestSuite.h"
 #include "Report.h"
 
+#include "Expectation.h"
+
 namespace stablecode {
 using namespace std;
 
@@ -47,6 +49,30 @@ void Report::message(const MessageType type, const std::string& text) {
 }
 
 void Report::message(const MessageType type, const std::string& text, Source source) {
+	printType(type);
+	cout<<" "<<text;
+	printSource(source);
+}
+
+void Report::reportExpectation(const Expectation& expectation) {
+	printType(expectation.isFailed() ? EXPECTATION_FAILED : EXPECTATION_PASSED);
+
+	cout<<" ";
+	if (!expectation.getReason().empty()) {
+		cout<<expectation.getReason()<<": ";
+	}
+	cout<<expectation.getDescription();
+	printSource(expectation.getSource());
+}
+
+void Report::failedExpectation(const Expectation& expectation) {
+	printType(EXPECTATION_FAILED);
+}
+
+void Report::printTest(const Test* test) {
+}
+
+void Report::printType(const MessageType type) {
 	cout<<endl;
 	switch(type) {
 	case MessageType::INFO:
@@ -58,16 +84,21 @@ void Report::message(const MessageType type, const std::string& text, Source sou
 	case TEST_PASSED:
 		cout<<"[  OK  ]";
 		break;
+	case EXPECTATION_PASSED:
+		cout<<"[  OK  ]";
+		break;
+	case EXPECTATION_FAILED:
+		cout<<"[ FAIL ]";
+		break;
 	default:
 		cout<<"[      ]";
 	}
-	cout<<" "<<text;
+}
+
+void Report::printSource(Source source) {
 	if (!source.isUndefined()) {
 		cout<<" <at "<<source.fileName()<<":"<<source.getLineNumber()<<">";
 	}
-}
-
-void Report::printTest(const Test* test) {
 }
 
 } /* namespace stablecode */

@@ -42,8 +42,7 @@ struct LoggingStatement {
 struct ExpectationStatement {
 
 	BooleanValueStatement& value(const bool first) {
-		TValue<bool> firstValue(first);
-		return booleanValueStatement(firstValue);
+		return booleanValueStatement(new TValue<bool>(first));
 	}
 
 	template<class T>
@@ -63,7 +62,7 @@ struct ExpectationStatement {
 
 protected:
 	virtual ValueStatement& valueStatement(const Value&) = 0;
-	virtual BooleanValueStatement& booleanValueStatement(const Value&) = 0;
+	virtual BooleanValueStatement& booleanValueStatement(const Value*) = 0;
 };
 
 struct BooleanValueStatement {

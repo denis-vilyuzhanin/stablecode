@@ -16,6 +16,7 @@
 #include "Report.h"
 
 namespace stablecode {
+class Report;
 
 class Runner {
 public:

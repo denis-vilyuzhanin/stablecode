@@ -37,7 +37,7 @@ public:
 	}
 
 private:
-	const T& value;
+	const T value;
 };
 
 } /* namespace stablecode */

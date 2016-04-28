@@ -25,6 +25,15 @@ Controller::~Controller() {
 	}
 }
 
+void Controller::addFailed(Expectation* failedExpectation) {
+	runner->getReport()->reportExpectation(*failedExpectation);
+}
+
+void Controller::addPassed(Expectation* passedExpectation) {
+	runner->getReport()->reportExpectation(*passedExpectation);
+}
+
+
 LogStatement& Controller::newLog() {
 	Log* log = new Log(runner->getReport());
 	logs.push_back(log);
@@ -38,13 +47,14 @@ LogStatement& Controller::newLog(Source source) {
 }
 
 statement::ExpectationStatement& Controller::newExpectation(std::string reason) {
-	Expectation* expectation = new Expectation(reason);
+	Expectation* expectation = new Expectation(this, reason);
 	expectations.push_back(expectation);
 	return *expectation;
 }
 
+
 statement::ExpectationStatement& Controller::newExpectation(std::string reason, Source source) {
-	Expectation* expectation = new Expectation(reason, source);
+	Expectation* expectation = new Expectation(this, reason, source);
 	expectations.push_back(expectation);
 	return *expectation;
 }

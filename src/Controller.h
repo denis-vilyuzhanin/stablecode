@@ -19,6 +19,7 @@ m * Controller.h
 
 namespace stablecode {
 
+
 class Controller {
 public:
 	class Delegate {
@@ -47,6 +48,9 @@ public:
 	Controller(Runner* runner, TestRunning* running);
 	virtual ~Controller();
 public:
+
+	void addFailed(Expectation*);
+	void addPassed(Expectation*);
 	statement::LogStatement& newLog();
 	statement::LogStatement& newLog(Source source);
 	statement::ExpectationStatement& newExpectation(std::string reason);

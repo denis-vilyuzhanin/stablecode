@@ -10,18 +10,23 @@
 
 #include <string>
 
-#include "Test.h"
-#include "TestSuite.h"
 #include "stablecode/statement.h"
 
+#include "Test.h"
+#include "TestSuite.h"
+
+
 namespace stablecode {
+class Expectation;
 
 class Report {
 public:
 	enum MessageType {
 		INFO,
 		TEST_BEGIN,
-		TEST_PASSED
+		TEST_PASSED,
+		EXPECTATION_FAILED,
+		EXPECTATION_PASSED,
 	};
 public:
 	Report();
@@ -29,11 +34,15 @@ public:
 public:
 	virtual void beginTest(const Test* test);
 	virtual void testPassed(const Test* test);
+	virtual void reportExpectation(const Expectation& expectation);
+	virtual void failedExpectation(const Expectation& expectation);
 	virtual void message(const MessageType type, const std::string& text);
 	virtual void message(const MessageType type, const std::string& text, Source source);
 private:
 	void printSuite(const TestSuite* suite);
 	void printTest(const Test* test);
+	void printType(const MessageType type);
+	void printSource(Source source);
 private:
 	const TestSuite* currentSuite = nullptr;
 };

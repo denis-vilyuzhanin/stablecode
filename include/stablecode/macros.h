@@ -82,7 +82,7 @@ void __$startup_type$__LINE__::run()
 //======================================================================
 // Assertion
 
-#define EXPECT(reason) expect(reason"")
+#define EXPECT(reason) expect(reason"", _STABLECODE_SOURCE__)
 
 
 //======================================================================
