@@ -44,7 +44,7 @@ void Expectation::isTrue() {
 }
 
 void Expectation::isFalse() {
-	compareWithExpected(new TValue<bool>(true), "'false' value is expected but was 'true'");
+	compareWithExpected(new TValue<bool>(false), "'false' value is expected but was 'true'");
 }
 
 
