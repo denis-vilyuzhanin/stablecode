@@ -15,8 +15,6 @@
 namespace stablecode {
 using namespace std;
 
-static Runner* currentRunner = nullptr;
-
 Runner::Runner(Report* report, const TestPlan* testPlan): report(report), testPlan(testPlan) {
 }
 
@@ -24,7 +22,6 @@ Runner::~Runner() {
 }
 
 void Runner::run() {
-	currentRunner = this;
 	for(TestRunning* runningEntry: testPlan->getTestRunnings()) {
 		Controller controller(this, runningEntry);
 		Test* test = runningEntry->getTest();
@@ -35,15 +32,20 @@ void Runner::run() {
 		}
 
 		test->run(controller.toLog(), controller.toExpect());
-		controller.handleTestResult();
+
 		for(Runnable* after : runningEntry->getRunnableAfter()) {
 			after->run(controller.toLog(), controller.toExpect());
 		}
+		controller.handleTestResult();
+		if (controller.isTestPassed()) {
+			passedTestsCount++;
+		} else {
+			failedTestsCount++;
+		}
 	}
+	report->result(failedTestsCount == 0);
+	report->statistic(testPlan->getTestRunnings().size(), passedTestsCount, failedTestsCount);
 }
 
-void Runner::executeAction(Runner::Action action) {
-	action(currentRunner);
-}
 
 } /* namespace stablecode */

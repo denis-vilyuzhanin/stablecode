@@ -27,11 +27,12 @@ public:
 public:
 	void run();
 
-	static void executeAction(Runner::Action action);
 	Report* getReport() const {return report;}
 private:
 	Report* report;
 	const TestPlan* testPlan;
+	int passedTestsCount = 0;
+	int failedTestsCount = 0;
 };
 
 } /* namespace stablecode */

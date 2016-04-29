@@ -48,6 +48,7 @@ public:
 	Controller(Runner* runner, TestRunning* running);
 	virtual ~Controller();
 public:
+	bool isTestPassed();
 	void handleTestResult();
 	void handleExpectation(Expectation*);
 	statement::LogStatement& newLog();

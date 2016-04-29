@@ -34,6 +34,8 @@ public:
 	Report();
 	virtual ~Report();
 public:
+	virtual void result(bool isPassed);
+	virtual void statistic(int totalTestsCount, int passedTestsCount, int failedTestsCount);
 	virtual void info(const std::string& text, Source source);
 	virtual void testBegin(const Test* test);
 	virtual void testPassed(const Test* test);

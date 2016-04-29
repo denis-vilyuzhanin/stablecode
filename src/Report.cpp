@@ -29,9 +29,15 @@ Report::~Report() {
 void Report::testBegin(const Test* test) {
 	const TestSuite* suite = test->getSuite();
 	if (currentSuite != suite) {
-		cout<<endl;
-		for(auto path : test->getSuite()->getPath()) {
-			cout<<path<<"=>";
+		int i = 0;
+		for(auto path : suite->getPath()) {
+			if (i > 1) {
+				if (i > 2) {
+					cout<<".";
+				}
+				cout<<path;
+			}
+			i++;
 		}
 		currentSuite = suite;
 	}
@@ -112,6 +118,15 @@ void Report::printType(const MessageType type) {
 	}
 }
 
+void Report::result(bool isPassed) {
+	cout<<endl<<endl;
+	cout<<"========================================================";
+	cout<<endl<<"[RESULT] "<<(isPassed ? "PASSED" : "FAILED");
+}
+
+void Report::statistic(int totalTestsCount, int passedTestsCount, int failedTestsCount) {
+	cout<<": "<<"Total="<<totalTestsCount<<" Passed="<<passedTestsCount<<" Failed="<<failedTestsCount;
+}
 
 void Report::printSource(Source source) {
 	if (!source.isUndefined()) {

@@ -106,6 +106,10 @@ void Controller::releaseLastExpectation() {
 	}
 }
 
+bool Controller::isTestPassed() {
+	return !hasUndefinedExpectations && !hasFailedExpectations;
+}
+
 void Controller::releastLastLog() {
 	if (lastLog != nullptr) {
 		delete lastLog;
