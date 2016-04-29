@@ -31,11 +31,7 @@ void Expectation::compareWithExpected(const Value* expected, string expectationD
 		description = expectationDescription;
 		defined = true;
 		failed = !actualValue->isEqual(*expectedValue);
-		if (failed) {
-			controller->addFailed(this);
-		} else {
-			controller->addPassed(this);
-		}
+		controller->handleExpectation(this);
 }
 
 void Expectation::isTrue() {

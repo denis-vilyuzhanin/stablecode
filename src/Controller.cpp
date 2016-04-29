@@ -20,16 +20,11 @@ Controller::~Controller() {
 	releaseLastExpectation();
 }
 
-void Controller::addFailed(Expectation* failedExpectation) {
-	runner->getReport()->reportExpectation(*failedExpectation);
+void Controller::handleExpectation(Expectation* expectation) {
+	runner->getReport()->reportExpectation(*expectation);
+	hasFailedExpectations = hasFailedExpectations || expectation->isFailed();
 	releaseLastExpectation();
 }
-
-void Controller::addPassed(Expectation* passedExpectation) {
-	runner->getReport()->reportExpectation(*passedExpectation);
-	releaseLastExpectation();
-}
-
 
 LogStatement& Controller::newLog() {
 	releastLastLog();
@@ -86,6 +81,7 @@ ExpectationStatement& Controller::ExpectDelegate::operator ()(std::string reason
 void Controller::checkAndReleaseLastExpectation() {
 	if (lastExpectation != nullptr) {
 		if (!lastExpectation->isDefined()) {
+			hasUndefinedExpectations = true;
 			runner->getReport()->reportExpectation(*lastExpectation);
 		}
 		releaseLastExpectation();

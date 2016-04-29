@@ -49,8 +49,7 @@ public:
 	virtual ~Controller();
 public:
 
-	void addFailed(Expectation*);
-	void addPassed(Expectation*);
+	void handleExpectation(Expectation*);
 	statement::LogStatement& newLog();
 	statement::LogStatement& newLog(Source source);
 	statement::ExpectationStatement& newExpectation(std::string reason);
@@ -69,6 +68,8 @@ private:
 	ExpectDelegate expect;
 	Expectation* lastExpectation = nullptr;
 	Log* lastLog = nullptr;
+	bool hasUndefinedExpectations = false;
+	bool hasFailedExpectations = false;
 };
 
 } /* namespace stablecode */
