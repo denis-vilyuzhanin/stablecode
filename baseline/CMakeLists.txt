@@ -8,3 +8,4 @@ endmacro(__stablecode__)
 
 add_subdirectory(passed)
 add_subdirectory(failed)
+add_subdirectory(undefined)

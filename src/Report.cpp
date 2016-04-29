@@ -55,18 +55,23 @@ void Report::message(const MessageType type, const std::string& text, Source sou
 }
 
 void Report::reportExpectation(const Expectation& expectation) {
-	printType(expectation.isFailed() ? EXPECTATION_FAILED : EXPECTATION_PASSED);
-
-	cout<<" ";
-	if (!expectation.getReason().empty()) {
-		cout<<expectation.getReason()<<": ";
+	if (expectation.isDefined()) {
+		printType(expectation.isFailed() ? EXPECTATION_FAILED : EXPECTATION_PASSED);
+	} else{
+		printType(UNDEFINED);
 	}
-	cout<<expectation.getDescription();
+
+	if (!expectation.getReason().empty()) {
+		cout<<" "<<expectation.getReason()<<":";
+	}
+	if (expectation.isFailed()) {
+		cout<<" "<<expectation.getDescription();
+	}
 	printSource(expectation.getSource());
 }
 
-void Report::failedExpectation(const Expectation& expectation) {
-	printType(EXPECTATION_FAILED);
+void Report::info(const std::string& text, Source source) {
+	message(INFO, text, source);
 }
 
 void Report::printTest(const Test* test) {
@@ -75,6 +80,9 @@ void Report::printTest(const Test* test) {
 void Report::printType(const MessageType type) {
 	cout<<endl;
 	switch(type) {
+	case MessageType::UNDEFINED:
+		cout<<"[ ???? ]";
+		break;
 	case MessageType::INFO:
 		cout<<"[ INFO ]";
 		break;
@@ -82,7 +90,7 @@ void Report::printType(const MessageType type) {
 		cout<<"[ TEST ]";
 		break;
 	case TEST_PASSED:
-		cout<<"[  OK  ]";
+		cout<<"[PASSED]";
 		break;
 	case EXPECTATION_PASSED:
 		cout<<"[  OK  ]";
@@ -94,6 +102,8 @@ void Report::printType(const MessageType type) {
 		cout<<"[      ]";
 	}
 }
+
+
 
 void Report::printSource(Source source) {
 	if (!source.isUndefined()) {

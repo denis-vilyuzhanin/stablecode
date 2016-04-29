@@ -25,6 +25,7 @@ public:
 		INFO,
 		TEST_BEGIN,
 		TEST_PASSED,
+		UNDEFINED,
 		EXPECTATION_FAILED,
 		EXPECTATION_PASSED,
 	};
@@ -32,10 +33,12 @@ public:
 	Report();
 	virtual ~Report();
 public:
+	virtual void info(const std::string& text, Source source);
 	virtual void beginTest(const Test* test);
 	virtual void testPassed(const Test* test);
 	virtual void reportExpectation(const Expectation& expectation);
-	virtual void failedExpectation(const Expectation& expectation);
+
+protected:
 	virtual void message(const MessageType type, const std::string& text);
 	virtual void message(const MessageType type, const std::string& text, Source source);
 private:

@@ -16,47 +16,44 @@ Controller::Controller(Runner* runner, TestRunning* running):
 }
 
 Controller::~Controller() {
-	for(auto log : logs) {
-		delete log;
-	}
-
-	for(auto expectation : expectations) {
-		delete expectation;
-	}
+	releastLastLog();
+	releaseLastExpectation();
 }
 
 void Controller::addFailed(Expectation* failedExpectation) {
 	runner->getReport()->reportExpectation(*failedExpectation);
+	releaseLastExpectation();
 }
 
 void Controller::addPassed(Expectation* passedExpectation) {
 	runner->getReport()->reportExpectation(*passedExpectation);
+	releaseLastExpectation();
 }
 
 
 LogStatement& Controller::newLog() {
-	Log* log = new Log(runner->getReport());
-	logs.push_back(log);
-	return *log;
+	releastLastLog();
+	lastLog = new Log(runner->getReport());
+	return *lastLog;
 }
 
 LogStatement& Controller::newLog(Source source) {
-	Log* log = new Log(runner->getReport(), source);
-	logs.push_back(log);
-	return *log;
+	releastLastLog();
+	lastLog = new Log(runner->getReport(), source);
+	return *lastLog;
 }
 
 statement::ExpectationStatement& Controller::newExpectation(std::string reason) {
-	Expectation* expectation = new Expectation(this, reason);
-	expectations.push_back(expectation);
-	return *expectation;
+	checkAndReleaseLastExpectation();
+	lastExpectation = new Expectation(this, reason);
+	return *lastExpectation;
 }
 
 
 statement::ExpectationStatement& Controller::newExpectation(std::string reason, Source source) {
-	Expectation* expectation = new Expectation(this, reason, source);
-	expectations.push_back(expectation);
-	return *expectation;
+	checkAndReleaseLastExpectation();
+	lastExpectation = new Expectation(this, reason, source);
+	return *lastExpectation;
 }
 
 
@@ -86,6 +83,29 @@ ExpectationStatement& Controller::ExpectDelegate::operator ()(std::string reason
 	return controller->newExpectation(reason, source);
 }
 
+void Controller::checkAndReleaseLastExpectation() {
+	if (lastExpectation != nullptr) {
+		if (!lastExpectation->isDefined()) {
+			runner->getReport()->reportExpectation(*lastExpectation);
+		}
+		releaseLastExpectation();
+	}
+}
+
+void Controller::releaseLastExpectation() {
+	if (lastExpectation != nullptr) {
+		delete lastExpectation;
+		lastExpectation = nullptr;
+	}
+}
+
+void Controller::releastLastLog() {
+	if (lastLog != nullptr) {
+		delete lastLog;
+		lastLog = nullptr;
+	}
+
+}
 
 } /* namespace stablecode */
 

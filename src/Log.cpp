@@ -25,7 +25,7 @@ Log::~Log() {
 void Log::info(LogStatement::Expression logExpression) {
 	stringstream logStream;
 	logExpression(logStream);
-	report->message(Report::INFO, logStream.str(), source);
+	report->info(logStream.str(), source);
 }
 
 

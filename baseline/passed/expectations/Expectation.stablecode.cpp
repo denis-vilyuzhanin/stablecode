@@ -11,5 +11,12 @@ TEST(expectedTrue) {
 	EXPECT().value(actual).isTrue();
 }
 
+TEST(expectedTrue_withReason) {
+	bool actual = true;
+	EXPECT("Flag must be true").value(actual).isTrue();
+}
 
+TEST(expectedTrue_constant) {
+	EXPECT().value(true).isTrue();
+}
 

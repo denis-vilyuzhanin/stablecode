@@ -44,6 +44,7 @@ public:
 	const Source& getSource() const {return source;}
 	const std::string& getReason() const {return reason;}
 	const std::string& getDescription() const {return description;}
+	bool isDefined() const {return defined;}
 private:
 
 	void compareWithExpected(const Value*, std::string);
@@ -53,6 +54,7 @@ private:
 	Source source;
 	const Value* actualValue = nullptr;
 	const Value* expectedValue = nullptr;
+	bool defined = false;
 	bool failed = false;
 	std::string description;
 };

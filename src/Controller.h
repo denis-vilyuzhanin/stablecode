@@ -59,12 +59,16 @@ public:
 	statement::LoggingStatement& toLog() {return log;}
 	statement::ExpectingStatement& toExpect() {return expect;}
 private:
+	void checkAndReleaseLastExpectation();
+	void releaseLastExpectation();
+	void releastLastLog();
+private:
 	Runner* runner;
 	TestRunning* running;
 	LogDelegate log;
 	ExpectDelegate expect;
-	std::list<Log*> logs;
-	std::list<Expectation*> expectations;
+	Expectation* lastExpectation = nullptr;
+	Log* lastLog = nullptr;
 };
 
 } /* namespace stablecode */
