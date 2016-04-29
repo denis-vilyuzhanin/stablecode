@@ -48,7 +48,7 @@ public:
 	Controller(Runner* runner, TestRunning* running);
 	virtual ~Controller();
 public:
-
+	void handleTestResult();
 	void handleExpectation(Expectation*);
 	statement::LogStatement& newLog();
 	statement::LogStatement& newLog(Source source);

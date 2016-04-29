@@ -20,6 +20,15 @@ Controller::~Controller() {
 	releaseLastExpectation();
 }
 
+void Controller::handleTestResult() {
+	checkAndReleaseLastExpectation();
+	if (!hasUndefinedExpectations && !hasFailedExpectations) {
+		runner->getReport()->testPassed(running->getTest());
+	} else {
+		runner->getReport()->testFailed(running->getTest());
+	}
+}
+
 void Controller::handleExpectation(Expectation* expectation) {
 	runner->getReport()->reportExpectation(*expectation);
 	hasFailedExpectations = hasFailedExpectations || expectation->isFailed();

@@ -35,11 +35,10 @@ void Runner::run() {
 		}
 
 		test->run(controller.toLog(), controller.toExpect());
-
+		controller.handleTestResult();
 		for(Runnable* after : runningEntry->getRunnableAfter()) {
 			after->run(controller.toLog(), controller.toExpect());
 		}
-		report->testPassed(test);
 	}
 }
 

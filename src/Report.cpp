@@ -42,6 +42,11 @@ void Report::testPassed(const Test* test) {
 	message(TEST_PASSED, test->getName());
 }
 
+void Report::testFailed(const Test* test) {
+	message(TEST_FAILED, test->getName());
+}
+
+
 void Report::printSuite(const TestSuite* suite) {
 }
 void Report::message(const MessageType type, const std::string& text) {
@@ -92,6 +97,9 @@ void Report::printType(const MessageType type) {
 	case TEST_PASSED:
 		cout<<"[PASSED]";
 		break;
+	case TEST_FAILED:
+		cout<<"[FAILED]";
+		break;
 	case EXPECTATION_PASSED:
 		cout<<"[  OK  ]";
 		break;
@@ -102,7 +110,6 @@ void Report::printType(const MessageType type) {
 		cout<<"[      ]";
 	}
 }
-
 
 
 void Report::printSource(Source source) {
