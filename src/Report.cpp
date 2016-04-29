@@ -26,7 +26,7 @@ Report::~Report() {
 	// TODO Auto-generated destructor stub
 }
 
-void Report::beginTest(const Test* test) {
+void Report::testBegin(const Test* test) {
 	const TestSuite* suite = test->getSuite();
 	if (currentSuite != suite) {
 		cout<<endl;
@@ -42,8 +42,9 @@ void Report::testPassed(const Test* test) {
 	message(TEST_PASSED, test->getName());
 }
 
-void Report::testFailed(const Test* test) {
-	message(TEST_FAILED, test->getName());
+void Report::testFailed(const Test* test, std::string reason) {
+	printType(TEST_FAILED);
+	cout<<" "<<test->getName()<<": "<< reason;
 }
 
 

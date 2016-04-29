@@ -35,9 +35,9 @@ public:
 	virtual ~Report();
 public:
 	virtual void info(const std::string& text, Source source);
-	virtual void beginTest(const Test* test);
+	virtual void testBegin(const Test* test);
 	virtual void testPassed(const Test* test);
-	virtual void testFailed(const Test* test);
+	virtual void testFailed(const Test* test, std::string reason);
 	virtual void reportExpectation(const Expectation& expectation);
 
 protected:

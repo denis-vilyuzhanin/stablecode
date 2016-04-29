@@ -22,10 +22,12 @@ Controller::~Controller() {
 
 void Controller::handleTestResult() {
 	checkAndReleaseLastExpectation();
-	if (!hasUndefinedExpectations && !hasFailedExpectations) {
-		runner->getReport()->testPassed(running->getTest());
+	if (hasUndefinedExpectations){
+		runner->getReport()->testFailed(running->getTest(), "Test has uncompleted expectations");
+	} else if (hasFailedExpectations) {
+		runner->getReport()->testFailed(running->getTest(), "Test has failed expectations");
 	} else {
-		runner->getReport()->testFailed(running->getTest());
+		runner->getReport()->testPassed(running->getTest());
 	}
 }
 

@@ -28,7 +28,7 @@ void Runner::run() {
 	for(TestRunning* runningEntry: testPlan->getTestRunnings()) {
 		Controller controller(this, runningEntry);
 		Test* test = runningEntry->getTest();
-		report->beginTest(test);
+		report->testBegin(test);
 
 		for(Runnable* before : runningEntry->getRunnableBefore()) {
 			 before->run(controller.toLog(), controller.toExpect());
